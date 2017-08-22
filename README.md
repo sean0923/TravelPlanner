@@ -10,10 +10,10 @@ They can also retrieve their saved trip records, and delete them if desired.
 
 ## Team
 
-  - Greg Susko
-  - Tiffany Choy
-  - Chao Zeng
-  - Nova Qiu
+  - Sean Hong 
+  - Jerry Xia
+  - Pavan Sethi
+  - Arthor Liou
 
 ## Table of Contents
 
