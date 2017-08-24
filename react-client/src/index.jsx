@@ -14,6 +14,10 @@ const FlightAPI = require('qpx-express');
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TabMenu from './components/TabMenu.jsx';
 
+const boxGenFile = require('./boxGenerator.js');
+const makeBoxWiBoder = boxGenFile.makeBoxWiBoder;
+const makeBoxWiNoBoder = boxGenFile.makeBoxWiNoBoder;
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -438,42 +442,51 @@ class App extends React.Component {
           <span><SearchBar onSearch = {this.onSearch}/></span>
           <Weather information = {this.state.weather} icon = {this.state.weatherIcon}/>
 
-        <MuiThemeProvider>
-          <TabMenu />
-        </MuiThemeProvider>
 
-        
+        <div style={makeBoxWiBoder('TabAndMapBox', '100%', 800, 'red')}>
 
-        <table className='table'>
-          <thead>
-            <tr>
-              <th>Flights</th>
-              <th>Lodging</th>
-              <th>Attractions</th>
-              <th>Restaurants</th>
-              <th>Saved</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <Flights handleFlightClick={this.handleFlightClick.bind(this)} flights={this.state.flights}/>
-              </td>
-              <td>
-                <Hotels handleHotelClick={this.handleHotelClick.bind(this)} hotels = {this.state.hotels} />
-              </td>
-              <td>
-                <Attraction attrItems = {this.state.attrItems} handleAttrItemState = {this.handleAttrItemState.bind(this)} />
-              </td>
-              <td>
-                <FoodList foodlist = {this.state.foodList} handleFoodItemState = {this.handleFoodItemState.bind(this)} />
-              </td>
-              <td id = "savedTrips">
-                <SavedTrips trips={this.state.savedTrips} remove = {this.removeSingleDatabaseRecord} save = {this.saveToDatabase}/>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+
+
+          <div style={makeBoxWiBoder('TabAndMapBox', '60%', '100%', 'red')}>
+            <MuiThemeProvider>
+              <TabMenu />
+            </MuiThemeProvider>
+
+            <table className='table'>
+              <thead>
+                <tr>
+                  <th>Flights</th>
+                  <th>Lodging</th>
+                  <th>Attractions</th>
+                  <th>Restaurants</th>
+                  <th>Saved</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <Flights handleFlightClick={this.handleFlightClick.bind(this)} flights={this.state.flights}/>
+                  </td>
+                  <td>
+                    <Hotels handleHotelClick={this.handleHotelClick.bind(this)} hotels = {this.state.hotels} />
+                  </td>
+                  <td>
+                    <Attraction attrItems = {this.state.attrItems} handleAttrItemState = {this.handleAttrItemState.bind(this)} />
+                  </td>
+                  <td>
+                    <FoodList foodlist = {this.state.foodList} handleFoodItemState = {this.handleFoodItemState.bind(this)} />
+                  </td>
+                  <td id = "savedTrips">
+                    <SavedTrips trips={this.state.savedTrips} remove = {this.removeSingleDatabaseRecord} save = {this.saveToDatabase}/>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <div style={makeBoxWiBoder('TabAndMapBox', '5%', '100%', 'red')}></div>
+          
+        </div>
       </div>
     )
   }

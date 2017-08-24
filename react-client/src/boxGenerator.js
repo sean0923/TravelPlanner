@@ -1,4 +1,4 @@
-const generateBox = (lftOrRgtStr, wPx, hPx, bColor) => {
+const makeBoxWiBoder = (lftOrRgtStr, wPx, hPx, bColor) => {
 
   lftOrRgtStr = lftOrRgtStr === 'r' ? 'right' : 'left';
 
@@ -13,7 +13,7 @@ const generateBox = (lftOrRgtStr, wPx, hPx, bColor) => {
 
 }
 
-const generateBoxWoBorder = (lftOrRgtStr, wPx, hPx) => {
+const makeBoxWiNoBoder = (lftOrRgtStr, wPx, hPx) => {
 
   lftOrRgtStr = lftOrRgtStr === 'r' ? 'right' : 'left';
 
@@ -28,5 +28,5 @@ const generateBoxWoBorder = (lftOrRgtStr, wPx, hPx) => {
 
 }
 
-module.exports.generateBox = generateBox;
-module.exports.generateBoxWoBorder = generateBoxWoBorder;
+module.exports.makeBoxWiBoder = makeBoxWiBoder;
+module.exports.makeBoxWiNoBoder = makeBoxWiNoBoder;
