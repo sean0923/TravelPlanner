@@ -449,6 +449,7 @@ class App extends React.Component {
 
           <div style={makeBoxWiBoder('TabMenu', '65%', '100%', 'red')}>
             <MuiThemeProvider>
+              
               <TabMenu 
                 handleFlightClick={this.handleFlightClick.bind(this)}
                 flights={this.state.flights}

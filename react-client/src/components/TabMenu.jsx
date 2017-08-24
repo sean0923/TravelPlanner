@@ -1,6 +1,11 @@
 import React from 'react';
 import {Tabs, Tab} from 'material-ui/Tabs';
 
+import Flights from './Flights.jsx';
+import Hotels from './Hotels.jsx';
+import Attractions from './Attraction.jsx';
+import FoodList from './FoodList.jsx';
+
 const styles = {
   headline: {
     fontSize: 24,
@@ -37,18 +42,16 @@ export default class TabMenu extends React.Component {
           <div>
             <h2 style={styles.headline}>Controllable Tab A</h2>
             <p>
-              FlightsFlightsFlightsFlightsFlightsFlights
-              FlightsFlightsFlightsFlightsFlightsFlights
+              FlightsFlightsFlightsFlightsFlightsFlightsFlights
+              FlightsFlightsFlightsFlightsFlightsFlightsFlights
+              FlightsFlightsFlightsFlightsFlightsFlightsFlights
             </p>
           </div>
         </Tab>
-        <Tab label="Lodging" value="b">
+        <Tab label="Hotels" value="b">
           <div>
             <h2 style={styles.headline}>Controllable Tab B</h2>
-            <p>
-              LodgingLodgingLodgingLodgingLodging
-              LodgingLodgingLodgingLodgingLodging
-            </p>
+            <Hotels handleHotelClick={this.props.handleHotelClick} hotels={this.props.hotels}/>
           </div>
         </Tab>
         <Tab label="Attractions" value="C">
@@ -63,10 +66,7 @@ export default class TabMenu extends React.Component {
         <Tab label="Restaurants" value="D">
           <div>
             <h2 style={styles.headline}>Controllable Tab B</h2>
-            <p>
-              RestaurantsRestaurantsRestaurantsRestaurants
-              Restaurants
-            </p>
+            <FoodList handleFoodItemState={this.props.handleFoodItemState} foodlist={this.props.foodlist}/>
           </div>
         </Tab>
       </Tabs>
