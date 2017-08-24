@@ -50,6 +50,7 @@ const tilesData = imgURL.map((oneUrl) => {
       img: oneUrl,
       title: 'Breakfast',
       author: 'jill111',
+      isStarClicked: false,
     }
   );
 })
@@ -58,20 +59,32 @@ const tilesData = imgURL.map((oneUrl) => {
 
 {/* actionIcon={<IconButton><StarBorder color="white" /></IconButton>} */}
 
-const iconToggle = (isClick) => {
-  if (isClick) {
 
-  } else {
-    return 'actionIcon={<IconButton><StarBorder color="white" /></IconButton>}'
-  }
-}
 
 class GridListExampleSimple extends React.Component {
   constructor(props) {
     super(props);
-    // this.state = {
+    this.state = {
+      lastClickedIdx: undefined,
+      isStarClicked: false
+    }
 
-    // }
+    this.toggleStar = this.toggleStar.bind(this);
+
+  }
+
+  toggleStar (tile, idx, tilesData) {
+    // console.log(idx);
+    console.log('state clicked:', this.state.lastClickedIdx);
+    tile.isStarClicked = true;
+    if (this.state.lastClickedIdx === undefined) { // if user cick it for the first time 
+      this.setState({ lastClickedIdx: idx });
+    } else { // if user click star for more than first time !!! 
+      tilesData[this.state.lastClickedIdx].isStarClicked = false; // <-- so that user can only click one hotel
+      this.setState({
+        lastClickedIdx: idx,
+      });
+    }
 
   }
 
@@ -89,17 +102,17 @@ class GridListExampleSimple extends React.Component {
           <Subheader>December</Subheader>
 
           {tilesData.map((tile, idx) => {
-            if (false) { 
+            if (tile.isStarClicked) { 
               return (
               <GridTile
                 key={idx} 
                 title={tile.title}
-                 actionIcon={<IconButton><StarBorder color="white" /></IconButton>} 
+                actionIcon={<IconButton> <Star onClick={() => (this.toggleStar(tile, idx, tilesData))} color="yellow"/></IconButton>}
                 actionPosition="left"
                 titlePosition="top"
                 titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
               >
-                <img src={tile.img} />
+                <img src={tile.img} onClick={() => (this.toggleStar(tile, idx, tilesData))}/>
               
               </GridTile>
               );
@@ -108,12 +121,12 @@ class GridListExampleSimple extends React.Component {
               <GridTile
                 key={idx} 
                 title={tile.title}
-                actionIcon={<IconButton> <Star color="yellow"/></IconButton>}
+                actionIcon={<IconButton><StarBorder onClick={() => (this.toggleStar(tile, idx, tilesData))} color="white" /></IconButton>}
                 actionPosition="left"
                 titlePosition="top"
                 titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
               >
-                <img src={tile.img} />
+              <img src={tile.img} onClick={() => (this.toggleStar(tile, idx, tilesData))}/>
               
               </GridTile>
               );
