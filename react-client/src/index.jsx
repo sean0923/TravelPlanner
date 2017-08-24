@@ -449,7 +449,18 @@ class App extends React.Component {
 
           <div style={makeBoxWiBoder('TabMenu', '65%', '100%', 'red')}>
             <MuiThemeProvider>
-              <TabMenu />
+              
+              <TabMenu 
+                handleFlightClick={this.handleFlightClick.bind(this)}
+                flights={this.state.flights}
+                handleHotelClick={this.handleHotelClick.bind(this)}
+                hotels = {this.state.hotels}
+                handleAttrItemState = {this.handleAttrItemState.bind(this)}
+                attrItems = {this.state.attrItems}
+                handleFoodItemState = {this.handleFoodItemState.bind(this)}
+                foodlist = {this.state.foodList}
+              />
+
             </MuiThemeProvider>
 
             <table className='table'>
@@ -471,10 +482,10 @@ class App extends React.Component {
                     <Hotels handleHotelClick={this.handleHotelClick.bind(this)} hotels = {this.state.hotels} />
                   </td>
                   <td>
-                    <Attraction attrItems = {this.state.attrItems} handleAttrItemState = {this.handleAttrItemState.bind(this)} />
+                    <Attraction handleAttrItemState = {this.handleAttrItemState.bind(this)} attrItems = {this.state.attrItems} />
                   </td>
                   <td>
-                    <FoodList foodlist = {this.state.foodList} handleFoodItemState = {this.handleFoodItemState.bind(this)} />
+                    <FoodList handleFoodItemState = {this.handleFoodItemState.bind(this)} foodlist = {this.state.foodList} />
                   </td>
                   <td id = "savedTrips">
                     <SavedTrips trips={this.state.savedTrips} remove = {this.removeSingleDatabaseRecord} save = {this.saveToDatabase}/>
