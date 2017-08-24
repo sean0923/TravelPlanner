@@ -438,6 +438,12 @@ class App extends React.Component {
           <span><SearchBar onSearch = {this.onSearch}/></span>
           <Weather information = {this.state.weather} icon = {this.state.weatherIcon}/>
 
+        <MuiThemeProvider>
+          <TabMenu />
+        </MuiThemeProvider>
+
+        
+
         <table className='table'>
           <thead>
             <tr>
