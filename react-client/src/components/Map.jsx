@@ -1,48 +1,26 @@
 import React from 'react';
 
-const EIFFEL_TOWER_POSITION = {
-  lat: 48.858608,
-  lng: 2.294471
-};
-
 export default class Map extends React.Component {
   constructor(props) {
     super(props);
     const google = window.google;
     // this.googleChecker = this.googleChecker.bind(this);
-    // this.renderMap = this.renderMap.bind(this);
+    this.renderMap = this.renderMap.bind(this);
   }
 
-  // googleChecker() {
-  //   if (!window.google) {
-  //     setTimeout(this.googleChecker, 100);
-  //     console.log("not there yet");
-  //   } else {
-  //     console.log("we're good to go!!");
-  //     this.renderMap();
-  //   }
-  // }
-
-  // renderMap() {
-  //   const coords = { lat: 41.375885, lng: 2.177813 };
-  //   // create map instance
-  //   new google.maps.Map(document.getElementById('map'), {
-  //     zoom: 16,
-  //     center: {
-  //       lat: coords.lat,
-  //       lng: coords.lng
-  //     }
-  //   });
-  // }
-
-  // componentDidMount() {
-  //   this.googleChecker();
-  // }
-
   componentDidMount() {
+    this.renderMap();
+  }
+
+  renderMap() {
+    const coords = { lat: 48.858608, lng: 2.294471 };
+
     this.map = new google.maps.Map(document.getElementById('map'), {
-      center: EIFFEL_TOWER_POSITION,
-      zoom: 11
+      zoom: 11,
+      center: {
+        lat: coords.lat,
+        lng: coords.lng
+      }
     });
   }
 
