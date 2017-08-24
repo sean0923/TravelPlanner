@@ -11,6 +11,8 @@ import Weather from './components/Weather.jsx';
 import SavedTrips from './components/savedTrips.jsx';
 const FlightAPI = require('qpx-express');
 
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import TabMenu from './components/TabMenu.jsx';
 
 class App extends React.Component {
   constructor(props) {
