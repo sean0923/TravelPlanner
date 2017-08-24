@@ -446,8 +446,6 @@ class App extends React.Component {
 
         <div style={makeBoxWiBoder('TabAndMapBox', '100%', 800, 'red')}>
 
-
-
           <div style={makeBoxWiBoder('TabMenu', '65%', '100%', 'red')}>
             <MuiThemeProvider>
               
@@ -464,36 +462,7 @@ class App extends React.Component {
 
             </MuiThemeProvider>
 
-            <table className='table'>
-              <thead>
-                <tr>
-                  <th>Flights</th>
-                  <th>Lodging</th>
-                  <th>Attractions</th>
-                  <th>Restaurants</th>
-                  <th>Saved</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <Flights handleFlightClick={this.handleFlightClick.bind(this)} flights={this.state.flights}/>
-                  </td>
-                  <td>
-                    <Hotels handleHotelClick={this.handleHotelClick.bind(this)} hotels = {this.state.hotels} />
-                  </td>
-                  <td>
-                    <Attraction handleAttrItemState = {this.handleAttrItemState.bind(this)} attrItems = {this.state.attrItems} />
-                  </td>
-                  <td>
-                    <FoodList handleFoodItemState = {this.handleFoodItemState.bind(this)} foodlist = {this.state.foodList} />
-                  </td>
-                  <td id = "savedTrips">
-                    <SavedTrips trips={this.state.savedTrips} remove = {this.removeSingleDatabaseRecord} save = {this.saveToDatabase}/>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+
           </div>
           
           <div style={makeBoxWiBoder('TabAndMapBox', '2.5%', '100%', 'red')}></div>
@@ -521,6 +490,38 @@ class App extends React.Component {
           </div>
 
         </div>
+
+        <table className='table'>
+          <thead>
+            <tr>
+              <th>Flights</th>
+              <th>Lodging</th>
+              <th>Attractions</th>
+              <th>Restaurants</th>
+              <th>Saved</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <Flights handleFlightClick={this.handleFlightClick.bind(this)} flights={this.state.flights}/>
+              </td>
+              <td>
+                <Hotels handleHotelClick={this.handleHotelClick.bind(this)} hotels = {this.state.hotels} />
+              </td>
+              <td>
+                <Attraction handleAttrItemState = {this.handleAttrItemState.bind(this)} attrItems = {this.state.attrItems} />
+              </td>
+              <td>
+                <FoodList handleFoodItemState = {this.handleFoodItemState.bind(this)} foodlist = {this.state.foodList} />
+              </td>
+              <td id = "savedTrips">
+                <SavedTrips trips={this.state.savedTrips} remove = {this.removeSingleDatabaseRecord} save = {this.saveToDatabase}/>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        
       </div>
     )
   }
