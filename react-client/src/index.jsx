@@ -447,7 +447,7 @@ class App extends React.Component {
 
 
 
-          <div style={makeBoxWiBoder('TabAndMapBox', '60%', '100%', 'red')}>
+          <div style={makeBoxWiBoder('TabMenu', '65%', '100%', 'red')}>
             <MuiThemeProvider>
               <TabMenu />
             </MuiThemeProvider>
@@ -484,8 +484,22 @@ class App extends React.Component {
             </table>
           </div>
           
-          <div style={makeBoxWiBoder('TabAndMapBox', '5%', '100%', 'red')}></div>
+          <div style={makeBoxWiBoder('TabAndMapBox', '2.5%', '100%', 'red')}></div>
           
+          <div style={makeBoxWiBoder('MapContainer', '32.5%', '100%')}>
+
+            {/* <div style={generateBox('l', '100%', '10%', 'red')}></div> */}
+
+            {/* <div style={generateBox('l', '100%', '2.5%', 'red')}/> */}
+
+            <div style={makeBoxWiBoder('MAP', '100%', '50%', 'green')}><h2>MAP</h2></div>
+
+            <div style={makeBoxWiBoder('', '100%', '7.5%', 'red')}/>
+
+            <div style={makeBoxWiBoder('', '100%', '42.5%', '')}/>
+
+          </div>
+
         </div>
       </div>
     )

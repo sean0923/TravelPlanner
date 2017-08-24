@@ -8,11 +8,12 @@ body {
   font-family: Arial, sans-serif;
   font-weight: normal;
   color: #333;
-  background: url("backpack.jpg") no-repeat center center fixed;
- -webkit-background-size: cover;
+   background: url("backpack.jpg") no-repeat center center fixed;  
+  /* background-color: rgba(157, 229, 229, 0.7); */
+ /* -webkit-background-size: cover;
  -moz-background-size: cover;
  -o-background-size: cover;
- background-size: cover;
+ background-size: cover; */
 }
 
 .search-wrapper {
