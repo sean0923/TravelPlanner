@@ -1,8 +1,14 @@
-
 import React from 'react';
-import Markers from './Markers.jsx';
+// import Markers from './Markers.jsx';
 
-export class Map extends React.Component {
+/**
+* When selecting 1 place, updated array to just selected
+* Click listener - select item on left
+Marker Click/unClick
+Type: hybrid?
+*/
+
+export class MapGoogle extends React.Component {
   constructor(props) {
     super(props);
     const { lat, lng } = this.props.initalCenter;
@@ -11,21 +17,21 @@ export class Map extends React.Component {
       currentLocation: {
         lat: lat,
         lng: lng
-      }
+      },
       hotel: {},
       attractions: [],
-      food:
-    };
+      food: []
+    }
   }
 
-  componentDidUpdate(prevpProps, prevState) {
-    if (prevProps.google !== this.props.google) {
-      this.loadMap();
-    }
-    if (prevState.currentLocation !== this.state.currentLocation) {
-      this.recenterMap();
-    }
-  }
+  // componentDidUpdate(prevpProps, prevState) {
+  //   if (prevProps.google !== this.props.google) {
+  //     this.loadMap();
+  //   }
+  //   if (prevState.currentLocation !== this.state.currentLocation) {
+  //     this.recenterMap();
+  //   }
+  // }
 
   componentDidMount() {
     if (this.props.centerAroundCurrentLocation) {
@@ -84,39 +90,40 @@ export class Map extends React.Component {
     }
   }
 
-  recenterMap() {
-    const map = this.map;
-    const current = this.state.currentLocation;
+  // recenterMap() {
+  //   const map = this.map;
+  //   const current = this.state.currentLocation;
 
-    const google = this.props.google;
-    const maps = google.maps;
-    if (map) {
-      let center = new maps.LatLng(current.lat, current.lng)
-      map.panTo(center);
-    }
-  }
+  //   const google = this.props.google;
+  //   const maps = google.maps;
+  //   if (map) {
+  //     let center = new maps.LatLng(current.lat, current.lng)
+  //     map.panTo(center);
+  //   }
+  // }
 
   // Want Props of Destination
   // Arrays of Hotel, atttractions, food
   //props.hotels
   //props.attractions
   //props.food
+
   render() {
     return (
       <div ref='map'>
         Loading Map...
-       </div>
+      </div>
     )
   }
 }
 
-Map.propTypes = {
-  google: React.PropTypes.object;
-  zoom: React.PropTypes.number,
-  initialCenter: React.PropTypes.object,
-  centerAroundCurrentLocation: React.PropTypes.bool,
-  onMove: React.PropTypes.func
-}
+// Map.propTypes = {
+//   google: React.PropTypes.object,
+//   zoom: React.PropTypes.number,
+//   initialCenter: React.PropTypes.object,
+//   centerAroundCurrentLocation: React.PropTypes.bool,
+//   onMove: React.PropTypes.func
+// };
 
 Map.defaultProps = {
   //Default San Francisco, Zoom @City-Level
@@ -125,15 +132,8 @@ Map.defaultProps = {
     lng: -122.4149416
   },
   zoom: 10,
-  centerAroundCurrentLocation: false
-   onMove: functino() {}
- }
+  centerAroundCurrentLocation: false,
+  onMove: function() { }
+};
 
-export default Map;
-
- /**
- * When selecting 1 place, updated array to just selected
- * Click listener - select item on left
- Marker Click/unClick
- Type: hybrid?
- */
+export default MapGoogle;
