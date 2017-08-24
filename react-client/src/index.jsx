@@ -491,7 +491,7 @@ class App extends React.Component {
 
         </div>
 
-        <table className='table'>
+        {/* <table className='table'>
           <thead>
             <tr>
               <th>Flights</th>
@@ -520,8 +520,8 @@ class App extends React.Component {
               </td>
             </tr>
           </tbody>
-        </table>
-        
+        </table> */}
+
       </div>
     )
   }

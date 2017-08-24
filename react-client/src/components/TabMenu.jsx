@@ -6,6 +6,10 @@ import Hotels from './Hotels.jsx';
 import Attractions from './Attraction.jsx';
 import FoodList from './FoodList.jsx';
 
+const boxGenFile = require('../boxGenerator.js');
+const makeBoxWiBoder = boxGenFile.makeBoxWiBoder;
+const makeBoxWiNoBoder = boxGenFile.makeBoxWiNoBoder;
+
 const styles = {
   headline: {
     fontSize: 24,
@@ -20,7 +24,7 @@ export default class TabMenu extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: 'a',
+      value: 'b',
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -51,6 +55,7 @@ export default class TabMenu extends React.Component {
         <Tab label="Hotels" value="b">
           <div>
             <h2 style={styles.headline}>Controllable Tab B</h2>
+            <div style={makeBoxWiBoder('TestRedBox', '100%', '10px', 'red')}></div>
             <Hotels handleHotelClick={this.props.handleHotelClick} hotels={this.props.hotels}/>
           </div>
         </Tab>
