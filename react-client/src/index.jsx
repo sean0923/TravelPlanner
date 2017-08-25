@@ -376,29 +376,44 @@ class App extends React.Component {
     this.updateSavedChoices('attractions', e.props.attrItemEntry, e.state.selected);
   }
 
-  handleFoodItemState(e, fooditem) {
-    this.updateSavedChoices('food', fooditem, e.state.selected);
+  handleFoodItemState(e, fooditem, selected) {
+    this.updateSavedChoices('food', fooditem, selected);
   }
 
   updateSavedChoices(categoryName, itemData, selected) {
+    console.log('slected: ', selected);
+    console.log('itemData:', itemData)
     let list = this.state.savedChoices[0][categoryName];
     if (list === undefined) {
       return;
     }
 
     var selectItem = {};
+    selectItem.name = itemData.name;
+    selectItem.address = itemData.location.display_address.join(', ');
+    selectItem.price = itemData.price;
+    selectItem.image_url = itemData.image_url;
+    selectItem.category = itemData.categories[0].title;
 
     if (selected) {
-      selectItem.name = itemData.name;
-      selectItem.address = itemData.location.display_address.join(', ');
-      selectItem.price = itemData.price;
-      selectItem.image_url = itemData.image_url;
-      selectItem.category = itemData.categories[0].title;
-
       list.push(selectItem);
     }
     else {
+      // console.log('notSelected');
+      // console.log('list:', list);
+      // console.log('selectedItem:', selectItem);
+      // console.log('selectedItem:', selectItem);
       let index = list.indexOf(selectItem);
+
+      for (var i = 0; i < list.length; i++) {
+        var oneItem = list[i];
+        if (oneItem.name === selectItem.name) {
+          index = i;
+          break;
+        }
+      }
+
+      // console.log('index:', index)
       if (index >= 0) {
         list.splice(index, 1);
       }
