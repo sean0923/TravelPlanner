@@ -31,76 +31,47 @@ const styles = {
   },
   gridTileChosen: {
     // border: '5px solid rgb(0,188,212)',
-    border: '5px solid black',
+    border: '5px solid red',
     fontSize: '20px',
   },
-  smallIcon: {
-    width: 36,
-    height: 36,
-  },
-  mediumIcon: {
-    width: 48,
-    height: 48,
-  },
-  largeIcon: {
-    width: 60,
-    height: 60,
-  },
-  small: {
-    width: 72,
-    height: 72,
-    padding: 16,
-  },
-  medium: {
-    width: 96,
-    height: 96,
-    padding: 24,
-  },
-  large: {
-    width: 120,
-    height: 120,
-    padding: 30,
-  },
+
 };
-
-const imgURL = [
-  'https://www.codeproject.com/KB/GDI-plus/ImageProcessing2/flip.jpg',
-  'http://wallpaper-gallery.net/images/image/image-3.jpg',
-  'http://www.menucool.com/slider/jsImgSlider/images/image-slider-2.jpg',
-  'https://s-media-cache-ak0.pinimg.com/originals/5b/6f/38/5b6f38d097f6a93af17ea67f3dceca28.jpg',
-  'http://www.menucool.com/slider/jsImgSlider/images/image-slider-1.jpg',
-  'https://static.guim.co.uk/sys-images/Guardian/Pix/pictures/2014/4/11/1397210130748/Spring-Lamb.-Image-shot-2-011.jpg',
-  'https://www.codeproject.com/KB/GDI-plus/ImageProcessing2/flip.jpg',
-  'http://wallpaper-gallery.net/images/image/image-3.jpg',
-  'http://www.menucool.com/slider/jsImgSlider/images/image-slider-2.jpg',
-  'https://s-media-cache-ak0.pinimg.com/originals/5b/6f/38/5b6f38d097f6a93af17ea67f3dceca28.jpg',
-  'http://www.menucool.com/slider/jsImgSlider/images/image-slider-1.jpg',
-  'https://static.guim.co.uk/sys-images/Guardian/Pix/pictures/2014/4/11/1397210130748/Spring-Lamb.-Image-shot-2-011.jpg',
-]
-
-const tilesData = imgURL.map((oneUrl) => {
-  return (
-    {
-      img: oneUrl,
-      title: 'Breakfast',
-      author: 'jill111',
-      isStarClicked: false,
-    }
-  );
-})
 
 
 
 {/* actionIcon={<IconButton><StarBorder color="white" /></IconButton>} */}
 
-
+var styleToggler = (isClicked) => {
+  if (isClicked) {
+    console.log('chosen');
+    return styles.gridTileChosen
+  } else {
+    console.log('!!! NOT chosen');
+    return styles.gridTileGray
+  }
+}
 
 class GridListExampleSimple extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       lastClickedIdx: undefined,
-      isStarClicked: false
+      isClicked: false
+    }
+  }
+
+  handleHotelClick(hotel, event, idx){
+    this.props.handleHotelClick(hotel, event);
+    hotel.is_closed = true;
+    if (this.state.lastClickedIdx === undefined) {
+      this.setState({
+        lastClickedIdx: idx
+      });
+    } else {
+      this.props.hotels[this.state.lastClickedIdx].is_closed = false;
+      this.setState({
+        lastClickedIdx: idx
+      });
     }
   }
 
@@ -114,9 +85,9 @@ class GridListExampleSimple extends React.Component {
           style={styles.gridList}
         >
           <Subheader>December</Subheader>
-
           {this.props.hotels.map((hotel, idx) => {
             return (
+              <span>
               <GridTile
                 key={idx} 
                 title={hotel.name}
@@ -124,15 +95,19 @@ class GridListExampleSimple extends React.Component {
                 actionPosition="left"
                 titlePosition="top"
                 titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
-                style={styles.gridTileGray}
-                className="tileDesign_00"
+                className={"tileDesign_00"}
+                onClick={(e) => (this.handleHotelClick(hotel, e, idx))}
+                style={styleToggler(hotel.is_closed)}
               >
               <img 
                 src={hotel.image_url} 
-                
+                className="avoid-clicksSean"
+                onClick={(e) => (this.handleHotelClick(hotel, e, idx))}
               />
               
               </GridTile>
+              {console.log((hotel.is_closed))}
+              </span>
             );
           })} 
 

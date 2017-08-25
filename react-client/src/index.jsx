@@ -87,7 +87,7 @@ class App extends React.Component {
   handleHotelClick(hotel, event) {
     console.log(hotel.url);
 
-    this.removeClass('hotelHighlight');
+    this.removeClass('tileDesignChosen');
     if (this.state.selectedHotelId === hotel.id) {
       this.state.savedChoices[0].hotel = {};
       delete this.state.selectedHotelId;
@@ -95,7 +95,7 @@ class App extends React.Component {
       this.setState({
         selectedHotelId: hotel.id
       });
-      $(event.target).toggleClass('hotelHighlight');
+      $(event.target).toggleClass('tileDesignChosen');
       var saved = {
         name: hotel.name,
         address: hotel.location.display_address.join(', '),
