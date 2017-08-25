@@ -61,6 +61,7 @@ export default class Grid_HotelList extends React.Component {
   }
 
   handleHotelClick(hotel, event, idx){
+    console.log('price: ', hotel.price.length)
     this.props.handleHotelClick(hotel, event);
     hotel.is_closed = true;
     if (this.state.lastClickedIdx === undefined) {
@@ -76,6 +77,10 @@ export default class Grid_HotelList extends React.Component {
   }
 
   render() {
+    var sortedHotel;
+    if (this.props.hotels.length) {
+      
+    }
     return(
       <div style={styles.root}>
         <GridList
@@ -84,10 +89,12 @@ export default class Grid_HotelList extends React.Component {
           padding={20}
           style={styles.gridList}
         >
-          <Subheader>December</Subheader>
+
+
           {this.props.hotels.map((hotel, idx) => {
             return (
               <span>
+                
               <GridTile
                 key={idx} 
                 title={hotel.name}
@@ -110,15 +117,6 @@ export default class Grid_HotelList extends React.Component {
               </span>
             );
           })} 
-
-      {/* <div  className="itemBorderSean" onClick={(e) => (this.handleHotelClick(this.props.hotel, e))}>
-          <div className='avoid-clicksSean'>
-            <div className='avoid-clicksSean'><b>{this.props.hotel.name}</b></div>
-            <div className='avoid-clicksSean'>{this.props.hotel.location.display_address.join(', ')}</div>
-            <div className='avoid-clicksSean'> {this.props.hotel.price}</div>
-            <img className='avoid-clicksSean' src={this.props.hotel.image_url} width="150" height = "150"></img>
-          </div>
-      </div> */}
 
         </GridList>
       </div>
