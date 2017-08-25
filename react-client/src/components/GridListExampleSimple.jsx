@@ -43,10 +43,10 @@ const styles = {
 
 var styleToggler = (isClicked) => {
   if (isClicked) {
-    console.log('chosen');
+    
     return styles.gridTileChosen
   } else {
-    console.log('!!! NOT chosen');
+    
     return styles.gridTileGray
   }
 }
@@ -106,7 +106,7 @@ class GridListExampleSimple extends React.Component {
               />
               
               </GridTile>
-              {console.log((hotel.is_closed))}
+              
               </span>
             );
           })} 
