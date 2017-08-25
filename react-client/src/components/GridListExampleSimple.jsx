@@ -22,10 +22,13 @@ const styles = {
     padding: '4%',
     height: '100%',
     overflowY: 'auto',
+    
   },
   gridTile: {
-    // marginBottom: '20%',
-    paddingBottom: 50
+    border: '5px solid black',
+    background: 'black',
+    // '-webkit-filter': 'grayscale(100%)',
+    filter: 'grayscale(50%)',
   },
 };
 
@@ -91,7 +94,7 @@ class GridListExampleSimple extends React.Component {
   render() {
     return(
       <div style={styles.root}>
-        <div style={makeBoxWiBoder('TestRedBox', '100%', '10px', 'red')}></div>
+        {/* <div style={styles.gridTile} /> */}
         <GridList
           cellHeight={300}
           cols={3}
@@ -111,9 +114,11 @@ class GridListExampleSimple extends React.Component {
                 actionPosition="left"
                 titlePosition="top"
                 titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
+                
+                
               >
                 <img src={tile.img} onClick={() => (this.toggleStar(tile, idx, tilesData))}/>
-              
+                {/* <div style={styles.gridTile} /> */}
               </GridTile>
               );
             } else {
@@ -125,6 +130,7 @@ class GridListExampleSimple extends React.Component {
                 actionPosition="left"
                 titlePosition="top"
                 titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
+                style={styles.gridTile}
               >
               <img src={tile.img} onClick={() => (this.toggleStar(tile, idx, tilesData))}/>
               

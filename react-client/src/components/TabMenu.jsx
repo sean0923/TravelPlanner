@@ -55,7 +55,6 @@ export default class TabMenu extends React.Component {
         <Tab label="Hotels" value="b">
           <div>
             <h2 style={styles.headline}>Controllable Tab B</h2>
-            <div style={makeBoxWiBoder('TestRedBox', '100%', '10px', 'red')}></div>
             <Hotels handleHotelClick={this.props.handleHotelClick} hotels={this.props.hotels}/>
           </div>
         </Tab>
