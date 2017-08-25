@@ -506,7 +506,7 @@ class App extends React.Component {
 
             <div style={makeBoxWiBoder('MAP', '100%', '50%', 'green')}><h2>
               <Map
-                location={this.state.arrivalLocation}
+              // location={this.state.arrivalLocation}
               />
             </h2>
             </div>

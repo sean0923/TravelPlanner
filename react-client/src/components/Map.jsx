@@ -1,4 +1,5 @@
 import React from 'react';
+// const geolocation = require('./geolocationAPI/geolocation.js');
 
 export default class Map extends React.Component {
   constructor(props) {
@@ -13,15 +14,24 @@ export default class Map extends React.Component {
   }
 
   renderMap() {
-    console.log('Render Map Coords: ', this.props.location);
-    const coords = { lat: 48.858608, lng: 2.294471 }; //Paris
-    // const coords = { lat: 35.6895, lng: 139.6917 };
+    // Potentially Convert Location into lat & long via geolocationAPI
+
+    // geolocation.requestGeolocation(req.body['location'], function(data) {
+    // geoCode = data.results[0].geometry.location;
+    // get lat & long from geoCode
+    // Set as props/state
+    // execute the this.map
+
+    console.log('Render Map Coords: ',
+      // this.props,
+      this.props.location
+    );
 
     this.map = new google.maps.Map(document.getElementById('map'), {
       zoom: 11,
       center: {
-        lat: coords.lat,
-        lng: coords.lng
+        lat: this.props.location.lat,
+        lng: this.props.location.lng
       }
     });
   }
@@ -45,3 +55,12 @@ export default class Map extends React.Component {
     );
   }
 }
+
+Map.defaultProps = {
+  // lat: 48.858608,
+  // lng: 2.294471,
+  location: {
+    lat: 48.858608,
+    lng: 2.294471
+  }
+};
