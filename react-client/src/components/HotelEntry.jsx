@@ -16,12 +16,12 @@ class HotelEntry extends React.Component {
   render () {
 
     return (
-      <div  className="itemBorder" onClick={(e) => (this.handleHotelClick(this.props.hotel, e))}>
-          <div className='avoid-clicks'>
-          <div className='avoid-clicks'><b>{this.props.hotel.name}</b></div>
-          <div className='avoid-clicks'>{this.props.hotel.location.display_address.join(', ')}</div>
-          <div className='avoid-clicks'> {this.props.hotel.price}</div>
-          <img className='avoid-clicks' src={this.props.hotel.image_url} width="150" height = "150"></img>
+      <div  className="itemBorderSean" onClick={(e) => (this.handleHotelClick(this.props.hotel, e))}>
+          <div className='avoid-clicksSean'>
+            <div className='avoid-clicksSean'><b>{this.props.hotel.name}</b></div>
+            <div className='avoid-clicksSean'>{this.props.hotel.location.display_address.join(', ')}</div>
+            <div className='avoid-clicksSean'> {this.props.hotel.price}</div>
+            <img className='avoid-clicksSean' src={this.props.hotel.image_url} width="150" height = "150"></img>
           </div>
       </div>
     )
