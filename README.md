@@ -10,10 +10,10 @@ They can also retrieve their saved trip records, and delete them if desired.
 
 ## Team
 
-  - Sean Hong 
+  - Sean Hong
   - Jerry Xia
   - Pavan Sethi
-  - Arthor Liou
+  - Arthur Liou
 
 ## Table of Contents
 
@@ -71,6 +71,7 @@ They can also retrieve their saved trip records, and delete them if desired.
 - Air-port-codes API
 - Dark Sky Weather API
 - Google Maps Geocoding API
+- Google Maps Javascript API
 
 
 ### Roadmap

@@ -15,6 +15,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TabMenu from './components/TabMenu.jsx';
 import TabsForTripSumAndSave from './components/TabsForTripSumAndSave.jsx';
 
+import Map from './components/Map.jsx';
+
 const boxGenFile = require('./boxGenerator.js');
 const makeBoxWiBoder = boxGenFile.makeBoxWiBoder;
 const makeBoxWiNoBoder = boxGenFile.makeBoxWiNoBoder;
@@ -28,10 +30,10 @@ class App extends React.Component {
       departureDate: '',
       arrivalDate: '',
       returnDate: '',
-      addresses:[
-        {category: 'hotel', name: 'London Hilton on Park Lane', address: '22 Park Ln, Mayfair, London W1K 1BE, UK'},
-        {category: 'restaurant', name: 'Dinner by Heston Blumenthal', address: '66 Knightsbridge, London SW1X 7LA, UK'},
-        {category: 'restaurant', name: 'Nobu London', address: 'Metropolitan by COMO, 19 Old Park Ln, Mayfair, London W1K 1LB, UK'}
+      addresses: [
+        { category: 'hotel', name: 'London Hilton on Park Lane', address: '22 Park Ln, Mayfair, London W1K 1BE, UK' },
+        { category: 'restaurant', name: 'Dinner by Heston Blumenthal', address: '66 Knightsbridge, London SW1X 7LA, UK' },
+        { category: 'restaurant', name: 'Nobu London', address: 'Metropolitan by COMO, 19 Old Park Ln, Mayfair, London W1K 1LB, UK' }
       ],
       flights: [],
       savedChoices: [{
@@ -46,7 +48,7 @@ class App extends React.Component {
       attrItems: [],
       hotels: [],
       foodList: [],
-      weather:[],
+      weather: [],
       weatherIcon: ''
     }
     this.onSearch = this.onSearch.bind(this);
@@ -62,14 +64,14 @@ class App extends React.Component {
   }
 
   hotelsSearch() {
-     $.ajax({
+    $.ajax({
       url: '/hotels',
       method: 'GET',
-      data: {city: this.state.arrivalLocation},
+      data: { city: this.state.arrivalLocation },
       success: (res) => {
-        const parsedHotel = JSON.parse( res );
+        const parsedHotel = JSON.parse(res);
         const addHotelAddress = this.state.addresses
-        .concat( parsedHotel.map( this.responseToSaveAddress( 'hotel' ) ) );
+          .concat(parsedHotel.map(this.responseToSaveAddress('hotel')));
 
         this.setState({
           hotels: parsedHotel,
@@ -79,10 +81,10 @@ class App extends React.Component {
       error: (err) => {
         console.log('error !')
       }
-     })
+    })
   }
 
-  handleHotelClick(hotel, event){
+  handleHotelClick(hotel, event) {
     console.log(hotel.url);
 
     this.removeClass('hotelHighlight');
@@ -100,7 +102,7 @@ class App extends React.Component {
         price: hotel.price,
         image_url: hotel.image_url
       };
-     this.state.savedChoices[0].hotel = saved;
+      this.state.savedChoices[0].hotel = saved;
     }
   }
 
@@ -116,19 +118,19 @@ class App extends React.Component {
           "destination": arrLocation,
           "date": departureDate,
           "maxStops": 0
-          },
-          {
-            "origin": arrLocation,
-            "destination": depLocation,
-            "date": returnDate, // YYYY-MM-DD
-            "maxStops": 0
-          }
+        },
+        {
+          "origin": arrLocation,
+          "destination": depLocation,
+          "date": returnDate, // YYYY-MM-DD
+          "maxStops": 0
+        }
         ],
         "solutions": 12,
       }
     };
     var context = this;
-    qpx.getInfo(body, function(error, data){
+    qpx.getInfo(body, function(error, data) {
       context.setState({
         flights: data.trips.tripOption
       })
@@ -148,35 +150,13 @@ class App extends React.Component {
       },
       method: "POST"
     })
-    .then((resp) => resp.json())
-    .then(function(data) {
-      if (data.airports[0].name.includes('All Airports')) {
-        codes.departLoc = data.airports[1].iata;
-      } else {
-        codes.departLoc = data.airports[0].iata;
-      }
-    })
-    .then(() => {
-      fetch(`https://www.air-port-codes.com/api/v1/multi?term=${arrivalLoc}`, {
-        headers: {
-          Accept: "application/json",
-          "APC-Auth": APCAuth,
-          "APC-Auth-Secret": APCSecret
-        },
-        method: "POST"
-      })
       .then((resp) => resp.json())
       .then(function(data) {
         if (data.airports[0].name.includes('All Airports')) {
-          codes.arrivalLoc = data.airports[1].iata;
+          codes.departLoc = data.airports[1].iata;
         } else {
-          codes.arrivalLoc = data.airports[0].iata;
+          codes.departLoc = data.airports[0].iata;
         }
-      })
-      .then((codes) => {
-        context.setState({
-          airportCodes: codes
-        })
       })
       .then(() => {
         fetch(`https://www.air-port-codes.com/api/v1/multi?term=${arrivalLoc}`, {
@@ -187,24 +167,46 @@ class App extends React.Component {
           },
           method: "POST"
         })
-        .then((resp) => resp.json())
-        .then(function(data) {
-          if (data.airports[0].name.includes('All Airports')) {
-            codes.arrivalLoc = data.airports[1].iata;
-          } else {
-            codes.arrivalLoc = data.airports[0].iata;
-          }
-        })
-        .then((codes) => {
-          context.setState({
-            airportCodes: codes
-          });
-        })
-        .then(() => {
-          context.retrieveFlights(context.state.departureDate, context.state.returnDate, codes.departLoc, codes.arrivalLoc);
-        });
-      })
-    });
+          .then((resp) => resp.json())
+          .then(function(data) {
+            if (data.airports[0].name.includes('All Airports')) {
+              codes.arrivalLoc = data.airports[1].iata;
+            } else {
+              codes.arrivalLoc = data.airports[0].iata;
+            }
+          })
+          .then((codes) => {
+            context.setState({
+              airportCodes: codes
+            })
+          })
+          .then(() => {
+            fetch(`https://www.air-port-codes.com/api/v1/multi?term=${arrivalLoc}`, {
+              headers: {
+                Accept: "application/json",
+                "APC-Auth": APCAuth,
+                "APC-Auth-Secret": APCSecret
+              },
+              method: "POST"
+            })
+              .then((resp) => resp.json())
+              .then(function(data) {
+                if (data.airports[0].name.includes('All Airports')) {
+                  codes.arrivalLoc = data.airports[1].iata;
+                } else {
+                  codes.arrivalLoc = data.airports[0].iata;
+                }
+              })
+              .then((codes) => {
+                context.setState({
+                  airportCodes: codes
+                });
+              })
+              .then(() => {
+                context.retrieveFlights(context.state.departureDate, context.state.returnDate, codes.departLoc, codes.arrivalLoc);
+              });
+          })
+      });
   }
 
   removeClass(classname) {
@@ -243,7 +245,7 @@ class App extends React.Component {
     }
   }
 
-  onSearch (departureLocation, arrivalLocation, departureDate, returnDate) {
+  onSearch(departureLocation, arrivalLocation, departureDate, returnDate) {
     console.log('the departure location is: ', departureLocation);
     console.log('the arrival location is: ', arrivalLocation);
     console.log('the departure date is: ', departureDate);
@@ -265,7 +267,7 @@ class App extends React.Component {
         food: [],
         weather: {}
       }]
-    },function(){
+    }, function() {
       this.yelpAttrSearch();
       this.searchFood();
       this.getAirportCodes(departureLocation, arrivalLocation);
@@ -274,17 +276,17 @@ class App extends React.Component {
     });
   }
 
-   yelpAttrSearch(){
+  yelpAttrSearch() {
     $.ajax({
       url: '/attraction',
       type: 'POST',
       data: { location: this.state.arrivalLocation },
       success: (res) => {
 
-        const parsedAttr = JSON.parse( res );
+        const parsedAttr = JSON.parse(res);
 
         const addAttrAddress = this.state.addresses
-        .concat( parsedAttr.map( this.responseToSaveAddress( 'attraction' ) ) );
+          .concat(parsedAttr.map(this.responseToSaveAddress('attraction')));
 
         this.setState({
           attrItems: parsedAttr,
@@ -297,22 +299,22 @@ class App extends React.Component {
     })
   }
 
-  searchFood(){
+  searchFood() {
     $.ajax({
-      url:'/food',
+      url: '/food',
       data: { location: this.state.arrivalLocation },
       type: 'POST',
-      success:(res) => {
+      success: (res) => {
 
-          const parsedFood = JSON.parse( res );
+        const parsedFood = JSON.parse(res);
 
-          const addFoodAddress = this.state.addresses
-          .concat( parsedFood.map( this.responseToSaveAddress( 'food' ) ) );
+        const addFoodAddress = this.state.addresses
+          .concat(parsedFood.map(this.responseToSaveAddress('food')));
 
-          this.setState({
-            foodList: parsedFood,
-            addresses: addFoodAddress
-          });
+        this.setState({
+          foodList: parsedFood,
+          addresses: addFoodAddress
+        });
       },
 
       error: (err) => {
@@ -321,13 +323,13 @@ class App extends React.Component {
     })
   }
 
-  saveToDatabase(){
+  saveToDatabase() {
     var app = this;
     $.ajax({
       url: '/save',
       method: 'post',
-      data: {data: JSON.stringify(app.state.savedChoices[0])},
-      success: (data) =>{
+      data: { data: JSON.stringify(app.state.savedChoices[0]) },
+      success: (data) => {
         this.retrieveFromDatabase();
       },
       error: (err) => {
@@ -336,8 +338,8 @@ class App extends React.Component {
     })
   }
 
-  responseToSaveAddress( category ){
-    return function( {name, location, coordinates} ){
+  responseToSaveAddress(category) {
+    return function({ name, location, coordinates }) {
       const display_address = location.display_address;
 
       return {
@@ -355,7 +357,7 @@ class App extends React.Component {
     $.ajax({
       method: "POST",
       url: "/weather",
-      data: {location: city, date: date},
+      data: { location: city, date: date },
       success: function(data) {
         var parsedData = JSON.parse(data);
         context.setState({
@@ -364,44 +366,44 @@ class App extends React.Component {
         })
       },
       error: function(err) {
-          console.log('error in requesting data.')
+        console.log('error in requesting data.')
       }
     })
   }
 
-  handleAttrItemState(e){
-    this.updateSavedChoices( 'attractions', e.props.attrItemEntry, e.state.selected );
+  handleAttrItemState(e) {
+    this.updateSavedChoices('attractions', e.props.attrItemEntry, e.state.selected);
   }
 
-  handleFoodItemState(e){
-    this.updateSavedChoices( 'food', e.props.fooditem, e.state.selected );
+  handleFoodItemState(e) {
+    this.updateSavedChoices('food', e.props.fooditem, e.state.selected);
   }
 
-  updateSavedChoices( categoryName, itemData, selected ){
-    let list = this.state.savedChoices[0][ categoryName ];
-    if( list === undefined ){
+  updateSavedChoices(categoryName, itemData, selected) {
+    let list = this.state.savedChoices[0][categoryName];
+    if (list === undefined) {
       return;
     }
 
     var selectItem = {};
 
-    if( selected ){
+    if (selected) {
       selectItem.name = itemData.name;
       selectItem.address = itemData.location.display_address.join(', ');
       selectItem.price = itemData.price;
-      selectItem.image_url = itemData. image_url;
+      selectItem.image_url = itemData.image_url;
       selectItem.category = itemData.categories[0].title;
 
-      list.push( selectItem );
+      list.push(selectItem);
     }
-    else{
-      let index = list.indexOf( selectItem );
-      if( index >= 0 ){
-        list.splice( index, 1 );
+    else {
+      let index = list.indexOf(selectItem);
+      if (index >= 0) {
+        list.splice(index, 1);
       }
     }
 
-    this.state.savedChoices[0][ categoryName ] = list;
+    this.state.savedChoices[0][categoryName] = list;
   }
 
   retrieveFromDatabase() {
@@ -421,12 +423,12 @@ class App extends React.Component {
     })
   }
 
-  removeSingleDatabaseRecord (uniqueID) {
+  removeSingleDatabaseRecord(uniqueID) {
     var context = this;
-    $.ajax ({
+    $.ajax({
       method: "POST",
       url: "/removeRecord",
-      data:{uniqueID: uniqueID},
+      data: { uniqueID: uniqueID },
       success: () => {
         context.retrieveFromDatabase();
       }, error: function() {
@@ -435,31 +437,29 @@ class App extends React.Component {
     })
   }
 
-  render () {
+  render() {
     return (
       <div>
 
         <h1 id='title'>Wanderly</h1>
-          <span><SearchBar onSearch = {this.onSearch}/></span>
-          <Weather information = {this.state.weather} icon = {this.state.weatherIcon}/>
+        <span><SearchBar onSearch={this.onSearch} /></span>
+        <Weather information={this.state.weather} icon={this.state.weatherIcon} />
 
 
         <div style={makeBoxWiBoder('TabAndMapBox', '100%', 800, 'red')}>
 
-
-
           <div style={makeBoxWiBoder('TabMenu', '65%', '100%', 'red')}>
             <MuiThemeProvider>
-              
-              <TabMenu 
+
+              <TabMenu
                 handleFlightClick={this.handleFlightClick.bind(this)}
                 flights={this.state.flights}
                 handleHotelClick={this.handleHotelClick.bind(this)}
-                hotels = {this.state.hotels}
-                handleAttrItemState = {this.handleAttrItemState.bind(this)}
-                attrItems = {this.state.attrItems}
-                handleFoodItemState = {this.handleFoodItemState.bind(this)}
-                foodlist = {this.state.foodList}
+                hotels={this.state.hotels}
+                handleAttrItemState={this.handleAttrItemState.bind(this)}
+                attrItems={this.state.attrItems}
+                handleFoodItemState={this.handleFoodItemState.bind(this)}
+                foodlist={this.state.foodList}
               />
 
             </MuiThemeProvider>
@@ -477,35 +477,37 @@ class App extends React.Component {
               <tbody>
                 <tr>
                   <td>
-                    <Flights handleFlightClick={this.handleFlightClick.bind(this)} flights={this.state.flights}/>
+                    <Flights handleFlightClick={this.handleFlightClick.bind(this)} flights={this.state.flights} />
                   </td>
                   <td>
-                    <Hotels handleHotelClick={this.handleHotelClick.bind(this)} hotels = {this.state.hotels} />
+                    <Hotels handleHotelClick={this.handleHotelClick.bind(this)} hotels={this.state.hotels} />
                   </td>
                   <td>
-                    <Attraction handleAttrItemState = {this.handleAttrItemState.bind(this)} attrItems = {this.state.attrItems} />
+                    <Attraction handleAttrItemState={this.handleAttrItemState.bind(this)} attrItems={this.state.attrItems} />
                   </td>
                   <td>
-                    <FoodList handleFoodItemState = {this.handleFoodItemState.bind(this)} foodlist = {this.state.foodList} />
+                    <FoodList handleFoodItemState={this.handleFoodItemState.bind(this)} foodlist={this.state.foodList} />
                   </td>
-                  <td id = "savedTrips">
-                    <SavedTrips trips={this.state.savedTrips} remove = {this.removeSingleDatabaseRecord} save = {this.saveToDatabase}/>
+                  <td id="savedTrips">
+                    <SavedTrips trips={this.state.savedTrips} remove={this.removeSingleDatabaseRecord} save={this.saveToDatabase} />
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
-          
+
           <div style={makeBoxWiBoder('TabAndMapBox', '2.5%', '100%', 'red')}></div>
-          
+
           <div style={makeBoxWiBoder('MapContainer', '32.5%', '100%')}>
 
             {/* <div style={generateBox('l', '100%', '10%', 'red')}></div> */}
 
             {/* <div style={generateBox('l', '100%', '2.5%', 'red')}/> */}
 
-            <div style={makeBoxWiBoder('MAP', '100%', '50%', 'green')}><h2>MAP</h2></div>
-
+            <div style={makeBoxWiBoder('MAP', '100%', '50%', 'green')}><h2>
+              <Map location={this.state.arrivalLocation} />
+            </h2>
+            </div>
             <div style={makeBoxWiBoder('marginBtwMapAnd', '100%', '2%', 'red')}/>
 
             <div style={makeBoxWiBoder('TabMenuForTripSumAndSave', '100%', '48%', '')}>
@@ -521,7 +523,7 @@ class App extends React.Component {
           </div>
 
         </div>
-      </div>
+      </div >
     )
   }
 }
