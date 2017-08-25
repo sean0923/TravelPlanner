@@ -9,7 +9,7 @@ body {
   font-weight: normal;
   color: #333;
      /* background: url("backpack.jpg") no-repeat center center fixed;     */
-     background-color: rgba(157, 229, 229, .6);   
+     background-color: white;   
  /* -webkit-background-size: cover;
  -moz-background-size: cover;
  -o-background-size: cover;
@@ -178,26 +178,39 @@ th {
 }
 
 .itemBorder {
-  border-radius: 10px;
-  border: 1px solid grey;
-  padding: 20px;
-  width: 250px;
-  height: 300px;
-  margin-bottom:10px;
+  border-radius: 0px;
+  border: 1px solid rgba(128, 128, 128, 0.18);
+  padding: 10px;
+  width: 900px;
+  height: 100px;
+  margin-bottom:0px;
+  margin-left: 10px;
+}
+
+.itemBorder:hover {
+    box-shadow: inset 0 0 100px 100px rgba(0, 0, 0, 0.1);
 }
 
 #itemBorder {
   border-radius: 10px;
-  border: 1px solid grey;
+  border: 1px 0.5px 1px 0.5px solid;
+  border-color: #f2f2f2
   padding: 20px;
   width: 250px;
   height: 300px;
-  margin-bottom:10px;
+  margin-bottom:0px;
 }
 
 img {
   border-radius: 10px;
   box-shadow: 10px 10px 5px rgba(45, 45, 45, .2);
+}
+
+.carrierLogo {
+  box-shadow: none;
+  max-width: 50px;
+  height: 50px;
+  margin-top: 10px;
 }
 
 #title {
@@ -229,4 +242,37 @@ img {
 #savedTrips {
   background-color: rgba(255, 255, 255, .85);
 }
+
+.logo {
+  display: inline-block;
+  position: static;
+  float: left;
+  margin-right: 15px;
+  margin-left: 15px;
+
+}
+
+.originating {
+  display: inline-block;
+  position: static;
+  margin-right: 15px;
+  margin-left: 15px;
+
+}
+
+.return {
+  display: inline-block;
+  position: static;
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
+.price {
+  display: inline-block;
+  position: static;
+  float: right;
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
 
