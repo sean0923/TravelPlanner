@@ -2,7 +2,7 @@ import React from 'react';
 import HotelEntry from './HotelEntry.jsx';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import GridListExampleSimple from './GridListExampleSimple.jsx';
+import Grid_HotelList from './Grid_HotelList.jsx';
 
 class Hotel extends React.Component {
   constructor(props) {
@@ -16,11 +16,11 @@ class Hotel extends React.Component {
       return (
          <div>
           <MuiThemeProvider>
-            <GridListExampleSimple 
+            <Grid_HotelList 
               hotels={this.props.hotels}
               handleHotelClick={this.props.handleHotelClick.bind(this)}
             />
-          </MuiThemeProvider>
+          </MuiThemeProvider> 
           { this.props.hotels.map((hotel,index) => <HotelEntry hotel={hotel} index={index} key={index} handleHotelClick={this.props.handleHotelClick.bind(this)}/>)}
         </div>
       )
