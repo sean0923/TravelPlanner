@@ -14,8 +14,6 @@ const FlightAPI = require('qpx-express');
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TabMenu from './components/TabMenu.jsx';
 
-import MapGoogle from './components/MapGoogle.jsx';
-import MapContainer from './components/MapContainer.jsx';
 import Map from './components/Map.jsx';
 
 const boxGenFile = require('./boxGenerator.js');
@@ -449,8 +447,6 @@ class App extends React.Component {
 
         <div style={makeBoxWiBoder('TabAndMapBox', '100%', 800, 'red')}>
 
-
-
           <div style={makeBoxWiBoder('TabMenu', '65%', '100%', 'red')}>
             <MuiThemeProvider>
 
@@ -519,7 +515,7 @@ class App extends React.Component {
           </div>
 
         </div>
-      </div>
+      </div >
     )
   }
 }

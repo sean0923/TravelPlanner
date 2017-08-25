@@ -26,17 +26,20 @@ export default class Map extends React.Component {
 
   render() {
     const mapStyle = {
-      width: 450,
-      height: 450,
+      width: 350,
+      height: 350,
       flex: 1,
-      border: '1px solid black'
+      border: '1px solid black',
+      alignItems: 'center'
     };
 
     return (
-
-      <div className="map" ref="map" id="map" style={mapStyle}>
-        Map Loading...
+      <div>
+        <div className="map" ref="map" id="map" style={mapStyle}>
+          Map Loading...
+        </div>
       </div>
+
     );
   }
 }
