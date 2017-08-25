@@ -16,7 +16,9 @@ class Hotel extends React.Component {
       return (
          <div>
           <MuiThemeProvider>
-            <GridListExampleSimple />
+            <GridListExampleSimple 
+              hotels={this.props.hotels}
+            />
           </MuiThemeProvider>
           { this.props.hotels.map((hotel,index) => <HotelEntry hotel={hotel} index={index} key={index} handleHotelClick={this.props.handleHotelClick.bind(this)}/>)}
         </div>
