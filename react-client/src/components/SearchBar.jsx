@@ -1,6 +1,8 @@
 import React from 'react';
 import CitySearch from './CitySearch.jsx'
 import Calendar from './Calendar.jsx'
+import RaisedButton from 'material-ui/RaisedButton';
+
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -80,12 +82,18 @@ class SearchBar extends React.Component {
     return (
       <div className='search'>
         <form >
-          <div className="search-wrapper group">
+          <div className="search-wrapper">
+
             <CitySearch handleChange={this.handleDepartureText} description="Departure City" />
             <CitySearch handleChange={this.handleArrivalText} description="Arrival City" />
             <Calendar handleChange={this.handleDepartureDate} description="Departure" />
             <Calendar handleChange={this.handleReturnDate} description="Return" />
-            <button type='submit' onClick={this.handleSearchClick} >Search</button>
+
+            <RaisedButton 
+              label="Search" 
+              secondary={true} 
+              onClick={this.handleSearchClick}
+            />
 
           </div>
         </form>
