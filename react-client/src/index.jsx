@@ -85,7 +85,6 @@ class App extends React.Component {
   }
 
   handleHotelClick(hotel, event) {
-    console.log(hotel.url);
 
     this.removeClass('tileDesignChosen');
     if (this.state.selectedHotelId === hotel.id) {
