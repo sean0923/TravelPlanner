@@ -18,7 +18,7 @@ const Flight = (props) => {
 
   return (
     <div className="itemBorder " onClick={(e) => (props.handleFlightClick(props.flight, e))}>
-    <div class="overlay"></div>
+    <div className="overlay"></div>
 
       <div className="avoid-clicks logo">
         <img className="carrierLogo" src={carrierLogoURL}/> 
@@ -27,29 +27,29 @@ const Flight = (props) => {
       <div className="avoid-clicks originating">
         <div className="avoid-clicks"><b>Outgoing Flight:</b></div>
         <div className="avoid-clicks">
-          <span className="avoid-clicks">{props.flight.slice[0].segment[0].flight.carrier}</span>
-          <span className="avoid-clicks"> {props.flight.slice[0].segment[0].leg[0].origin} - {props.flight.slice[0].segment[0].leg[0].destination}</span>
-          <span className="avoid-clicks"> {getDuration(props.flight.slice[0].duration)}</span>
-          <div className="avoid-clicks"> Departure: {getTime(props.flight.slice[0].segment[0].leg[0].departureTime)}</div>
-          <div className="avoid-clicks"> Arrival: {getTime(props.flight.slice[0].segment[0].leg[0].arrivalTime)}</div>
+          <span className="avoid-clicks subtext">{props.flight.slice[0].segment[0].flight.carrier}</span>
+          <span className="avoid-clicks subtext"> {props.flight.slice[0].segment[0].leg[0].origin} - {props.flight.slice[0].segment[0].leg[0].destination}</span>
+          <span className="avoid-clicks subtext"> {getDuration(props.flight.slice[0].duration)}</span>
+          <div className="avoid-clicks subtext"> Departure: {getTime(props.flight.slice[0].segment[0].leg[0].departureTime)}</div>
+          <div className="avoid-clicks subtext"> Arrival: {getTime(props.flight.slice[0].segment[0].leg[0].arrivalTime)}</div>
         </div>
       </div>
 
       <div className="avoid-clicks return">
         <div className="avoid-clicks"><b>Return Flight:</b></div>
         <div className="avoid-clicks">
-          <span className="avoid-clicks">{props.flight.slice[1].segment[0].flight.carrier}</span>
-          <span className="avoid-clicks"> {props.flight.slice[1].segment[0].leg[0].origin} - {props.flight.slice[1].segment[0].leg[0].destination}</span>
-          <span className="avoid-clicks"> {getDuration(props.flight.slice[1].duration)}</span>
-          <div className="avoid-clicks"> Departure: {getTime(props.flight.slice[1].segment[0].leg[0].departureTime)}</div>
-          <div className="avoid-clicks"> Arrival: {getTime(props.flight.slice[1].segment[0].leg[0].arrivalTime)}</div>
+          <span className="avoid-clicks subtext">{props.flight.slice[1].segment[0].flight.carrier}</span>
+          <span className="avoid-clicks subtext"> {props.flight.slice[1].segment[0].leg[0].origin} - {props.flight.slice[1].segment[0].leg[0].destination}</span>
+          <span className="avoid-clicks subtext"> {getDuration(props.flight.slice[1].duration)}</span>
+          <div className="avoid-clicks subtext"> Departure: {getTime(props.flight.slice[1].segment[0].leg[0].departureTime)}</div>
+          <div className="avoid-clicks subtext"> Arrival: {getTime(props.flight.slice[1].segment[0].leg[0].arrivalTime)}</div>
         </div>
       </div>
 
       <div className="avoid-clicks price">
-        <b>{props.flight.saleTotal.slice(0, 3)}</b><b>{props.flight.saleTotal.slice(3)} </b>
+        <b>{props.flight.saleTotal.slice(0, 3) + ' '}</b><b>{props.flight.saleTotal.slice(3)} </b>
         <br></br>
-        <p>per person</p>
+        <p className="subtext">per person</p>
       </div>
       
       <br></br>
