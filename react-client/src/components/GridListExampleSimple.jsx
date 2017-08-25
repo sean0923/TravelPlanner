@@ -24,11 +24,42 @@ const styles = {
     overflowY: 'auto',
     
   },
-  gridTile: {
-    border: '5px solid black',
-    background: 'black',
+  gridTileGray: {
+    border: '1px solid black',
     // '-webkit-filter': 'grayscale(100%)',
-    filter: 'grayscale(50%)',
+    // filter: 'grayscale(50%)',
+  },
+  gridTileChosen: {
+    // border: '5px solid rgb(0,188,212)',
+    border: '5px solid black',
+    fontSize: '20px',
+  },
+  smallIcon: {
+    width: 36,
+    height: 36,
+  },
+  mediumIcon: {
+    width: 48,
+    height: 48,
+  },
+  largeIcon: {
+    width: 60,
+    height: 60,
+  },
+  small: {
+    width: 72,
+    height: 72,
+    padding: 16,
+  },
+  medium: {
+    width: 96,
+    height: 96,
+    padding: 24,
+  },
+  large: {
+    width: 120,
+    height: 120,
+    padding: 30,
   },
 };
 
@@ -81,11 +112,19 @@ class GridListExampleSimple extends React.Component {
     console.log('state clicked:', this.state.lastClickedIdx);
     tile.isStarClicked = true;
     if (this.state.lastClickedIdx === undefined) { // if user cick it for the first time 
-      this.setState({ lastClickedIdx: idx });
-    } else { // if user click star for more than first time !!! 
-      tilesData[this.state.lastClickedIdx].isStarClicked = false; // <-- so that user can only click one hotel
+      this.setState({ 
+        lastClickedIdx: idx,
+        // isStarClicked: !this.state.isStarClicked
+      });
+    } else { // if user click star for more than first time !!!
+      if (this.state.lastClickedIdx !== idx) {
+        tilesData[this.state.lastClickedIdx].isStarClicked = false; // <-- so that user can only click one hotel
+      } else {
+        tilesData[this.state.lastClickedIdx].isStarClicked = true; // <-- so that user can only click one hotel
+      }
       this.setState({
         lastClickedIdx: idx,
+        // isStarClicked: !this.state.isStarClicked
       });
     }
 
@@ -110,11 +149,17 @@ class GridListExampleSimple extends React.Component {
               <GridTile
                 key={idx} 
                 title={tile.title}
-                actionIcon={<IconButton> <Star onClick={() => (this.toggleStar(tile, idx, tilesData))} color="yellow"/></IconButton>}
+                actionIcon={
+                  <IconButton iconStyle={styles.mediumIcon} style={styles.medium}> 
+                    <Star onClick={() => (this.toggleStar(tile, idx, tilesData))} color="yellow"/>
+                  </IconButton>
+                  }
                 actionPosition="left"
                 titlePosition="top"
                 titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
-                
+                style={styles.gridTileChosen}
+                className="tileDesignChosen"
+                titleStyle={{fontSize: 20}}
                 
               >
                 <img src={tile.img} onClick={() => (this.toggleStar(tile, idx, tilesData))}/>
@@ -130,7 +175,8 @@ class GridListExampleSimple extends React.Component {
                 actionPosition="left"
                 titlePosition="top"
                 titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
-                style={styles.gridTile}
+                style={styles.gridTileGray}
+                className="tileDesign_00"
               >
               <img src={tile.img} onClick={() => (this.toggleStar(tile, idx, tilesData))}/>
               
