@@ -311,6 +311,8 @@ class App extends React.Component {
         const addFoodAddress = this.state.addresses
           .concat(parsedFood.map(this.responseToSaveAddress('food')));
 
+        // console.log('post food req: ', parsedFood);
+
         this.setState({
           foodList: parsedFood,
           addresses: addFoodAddress
@@ -375,8 +377,8 @@ class App extends React.Component {
     this.updateSavedChoices('attractions', e.props.attrItemEntry, e.state.selected);
   }
 
-  handleFoodItemState(e) {
-    this.updateSavedChoices('food', e.props.fooditem, e.state.selected);
+  handleFoodItemState(e, fooditem) {
+    this.updateSavedChoices('food', fooditem, e.state.selected);
   }
 
   updateSavedChoices(categoryName, itemData, selected) {
@@ -461,9 +463,10 @@ class App extends React.Component {
                 handleFoodItemState={this.handleFoodItemState.bind(this)}
                 foodlist={this.state.foodList}
               />
-
+              
             </MuiThemeProvider>
-
+{/* {console.log('supposed to be foodlist: ', this.state.foodList)} */}
+{/* {console.log('supposed to be hotels: ', this.state.hotels)} */}
             <table className='table'>
               <thead>
                 <tr>

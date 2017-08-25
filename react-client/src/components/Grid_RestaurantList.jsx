@@ -58,31 +58,24 @@ export default class Grid_RestaurantList extends React.Component {
       lastClickedIdx: undefined,
       isClicked: false
     }
+    this.handleFoodClick = this.handleFoodClick.bind(this);
   }
 
-  handleFoodClick(){
+  handleFoodClick(fooditem, e, idx, sortedRestaurent){
     this.setState({
       selected: !this.state.selected
     }, ()=>{
-      this.props.handleFoodItemState( this );
+      this.props.handleFoodItemState( this, fooditem );
     })
-  }
 
-  handleHotelClick(restaurent, event, idx, sortedRestaurent){
-    console.log('price: ', restaurent.price.length)
-    this.props.handleHotelClick(restaurent, event);
-    restaurent.is_closed = true;
-    if (this.state.lastClickedIdx === undefined) {
-      this.setState({
-        lastClickedIdx: idx
-      });
-    } else {
-      console.log('sortedHotel', sortedRestaurent);
-      sortedRestaurent[this.state.lastClickedIdx].is_closed = false;
-      this.setState({
-        lastClickedIdx: idx
-      });
-    }
+    console.log('price: ', fooditem.price.length)
+    fooditem.is_closed = true;
+
+    this.setState({
+      lastClickedIdx: idx
+    });
+
+  
   }
 
   render() {
@@ -138,13 +131,13 @@ export default class Grid_RestaurantList extends React.Component {
                 titlePosition="top"
                 titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
                 className={"tileDesign_00"}
-                onClick={(e) => (this.handleHotelClick(fooditem, e, idx, sortedRestaurent))}
+                onClick={(e) => (this.handleFoodClick(fooditem, e, idx, sortedRestaurent))}
                 style={styleToggler(fooditem.is_closed)}
               >
               <img 
                 src={fooditem.image_url} 
                 className="avoid-clicksSean"
-                onClick={(e) => (this.handleHotelClick(fooditem, e, idx))}
+                onClick={(e) => (this.handleFoodClick(fooditem, e, idx))}
               />
               
               </GridTile>
