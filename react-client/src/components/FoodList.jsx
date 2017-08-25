@@ -10,14 +10,14 @@ const FoodList = ({foodlist,handleFoodItemState}) => {
   if (foodlist.length > 0) {
     return (
       <div>
-        <MuiThemeProvider>
+         <MuiThemeProvider>
 
           <Grid_RestaurantList 
             foodlist={foodlist} 
             handleFoodItemState={handleFoodItemState}
           />
 
-        </MuiThemeProvider>
+        </MuiThemeProvider> 
         { foodlist.map((item,index) => 
         <FoodItem 
           fooditem={item} 
