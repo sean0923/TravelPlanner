@@ -60,7 +60,7 @@ export default class Grid_HotelList extends React.Component {
     }
   }
 
-  handleHotelClick(hotel, event, idx){
+  handleHotelClick(hotel, event, idx, sortedHotels){
     console.log('price: ', hotel.price.length)
     this.props.handleHotelClick(hotel, event);
     hotel.is_closed = true;
@@ -69,7 +69,8 @@ export default class Grid_HotelList extends React.Component {
         lastClickedIdx: idx
       });
     } else {
-      this.props.hotels[this.state.lastClickedIdx].is_closed = false;
+      console.log('sortedHotel', sortedHotels);
+      sortedHotels[this.state.lastClickedIdx].is_closed = false;
       this.setState({
         lastClickedIdx: idx
       });
@@ -77,10 +78,20 @@ export default class Grid_HotelList extends React.Component {
   }
 
   render() {
-    var sortedHotel;
-    if (this.props.hotels.length) {
-      
+    var sortedHotels = [];
+
+    var hotelLen = this.props.hotels.length/3;
+
+    if (hotelLen) {
+      var oneDlHotels = this.props.hotels.slice(hotelLen*0,hotelLen*1);
+      var twoDlHotels = this.props.hotels.slice(hotelLen*1,hotelLen*2);
+      var threeDlHotels = this.props.hotels.slice(hotelLen*2,hotelLen*3);
+      for (var i = 0; i < oneDlHotels.length; i++) {
+        sortedHotels.push(oneDlHotels[i], twoDlHotels[i], threeDlHotels[i]);
+      }
+      // console.log(sortedHotels)
     }
+
     return(
       <div style={styles.root}>
         <GridList
@@ -91,9 +102,9 @@ export default class Grid_HotelList extends React.Component {
         >
 
 
-          {this.props.hotels.map((hotel, idx) => {
+          {sortedHotels.map((hotel, idx) => {
             return (
-              <span>
+              <span key={idx} >
                 
               <GridTile
                 key={idx} 
@@ -103,7 +114,7 @@ export default class Grid_HotelList extends React.Component {
                 titlePosition="top"
                 titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
                 className={"tileDesign_00"}
-                onClick={(e) => (this.handleHotelClick(hotel, e, idx))}
+                onClick={(e) => (this.handleHotelClick(hotel, e, idx, sortedHotels))}
                 style={styleToggler(hotel.is_closed)}
               >
               <img 
