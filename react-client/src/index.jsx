@@ -505,16 +505,18 @@ class App extends React.Component {
             {/* <div style={generateBox('l', '100%', '2.5%', 'red')}/> */}
 
             <div style={makeBoxWiBoder('MAP', '100%', '50%', 'green')}><h2>
-              <Map location={this.state.arrivalLocation} />
+              <Map
+                location={this.state.arrivalLocation}
+              />
             </h2>
             </div>
-            <div style={makeBoxWiBoder('marginBtwMapAnd', '100%', '2%', 'red')}/>
+            <div style={makeBoxWiBoder('marginBtwMapAnd', '100%', '2%', 'red')} />
 
             <div style={makeBoxWiBoder('TabMenuForTripSumAndSave', '100%', '48%', '')}>
               <MuiThemeProvider>
-                
-                <TabsForTripSumAndSave 
-                
+
+                <TabsForTripSumAndSave
+
                 />
 
               </MuiThemeProvider>
