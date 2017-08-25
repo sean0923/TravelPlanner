@@ -41,11 +41,7 @@ export default class TabMenu extends React.Component {
         <Tab label="Flights" value="a">
           <div>
             <h2 style={styles.headline}>Controllable Tab A</h2>
-            <p>
-              FlightsFlightsFlightsFlightsFlightsFlightsFlights
-              FlightsFlightsFlightsFlightsFlightsFlightsFlights
-              FlightsFlightsFlightsFlightsFlightsFlightsFlights
-            </p>
+            <Flights handleFlightClick={this.props.handleFlightClick} flights={this.props.flights}/>
           </div>
         </Tab>
         <Tab label="Hotels" value="b">
@@ -57,10 +53,7 @@ export default class TabMenu extends React.Component {
         <Tab label="Attractions" value="C">
           <div>
             <h2 style={styles.headline}>Controllable Tab B</h2>
-            <p>
-              AttractionsAttractionsAttractionsAttractions
-              AttractionsAttractionsAttractions
-            </p>
+            <Attractions handleAttrItemState={this.props.handleAttrItemState} attrItems={this.props.attrItems}/>
           </div>
         </Tab>
         <Tab label="Restaurants" value="D">

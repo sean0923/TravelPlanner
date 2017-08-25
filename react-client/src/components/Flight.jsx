@@ -14,9 +14,17 @@ const Flight = (props) => {
     return time;
   }
 
+  var carrierLogoURL = "https://www.gstatic.com/flights/airline_logos/70px/" + props.flight.slice[0].segment[0].flight.carrier + ".png";
+
   return (
-    <div className="itemBorder" onClick={(e) => (props.handleFlightClick(props.flight, e))}>
-      <div className="avoid-clicks">
+    <div className="itemBorder " onClick={(e) => (props.handleFlightClick(props.flight, e))}>
+    <div class="overlay"></div>
+
+      <div className="avoid-clicks logo">
+        <img className="carrierLogo" src={carrierLogoURL}/> 
+      </div>
+
+      <div className="avoid-clicks originating">
         <div className="avoid-clicks"><b>Outgoing Flight:</b></div>
         <div className="avoid-clicks">
           <span className="avoid-clicks">{props.flight.slice[0].segment[0].flight.carrier}</span>
@@ -26,8 +34,8 @@ const Flight = (props) => {
           <div className="avoid-clicks"> Arrival: {getTime(props.flight.slice[0].segment[0].leg[0].arrivalTime)}</div>
         </div>
       </div>
-      <div className="avoid-clicks">
-        <br className="avoid-clicks"></br>
+
+      <div className="avoid-clicks return">
         <div className="avoid-clicks"><b>Return Flight:</b></div>
         <div className="avoid-clicks">
           <span className="avoid-clicks">{props.flight.slice[1].segment[0].flight.carrier}</span>
@@ -37,8 +45,13 @@ const Flight = (props) => {
           <div className="avoid-clicks"> Arrival: {getTime(props.flight.slice[1].segment[0].leg[0].arrivalTime)}</div>
         </div>
       </div>
-      <br className="avoid-clicks"></br>
-      <div className="avoid-clicks"><b>{props.flight.saleTotal.slice(0, 3)} {props.flight.saleTotal.slice(3)} per person</b></div>
+
+      <div className="avoid-clicks price">
+        <b>{props.flight.saleTotal.slice(0, 3)}</b><b>{props.flight.saleTotal.slice(3)} </b>
+        <br></br>
+        <p>per person</p>
+      </div>
+      
       <br></br>
       <br></br>
     </div>
