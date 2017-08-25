@@ -13,6 +13,7 @@ const FlightAPI = require('qpx-express');
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TabMenu from './components/TabMenu.jsx';
+import TabsForTripSumAndSave from './components/TabsForTripSumAndSave.jsx';
 
 import Map from './components/Map.jsx';
 
@@ -507,10 +508,17 @@ class App extends React.Component {
               <Map location={this.state.arrivalLocation} />
             </h2>
             </div>
+            <div style={makeBoxWiBoder('marginBtwMapAnd', '100%', '2%', 'red')}/>
 
-            <div style={makeBoxWiBoder('', '100%', '7.5%', 'red')} />
+            <div style={makeBoxWiBoder('TabMenuForTripSumAndSave', '100%', '48%', '')}>
+              <MuiThemeProvider>
+                
+                <TabsForTripSumAndSave 
+                
+                />
 
-            <div style={makeBoxWiBoder('', '100%', '42.5%', '')} />
+              </MuiThemeProvider>
+            </div>
 
           </div>
 
