@@ -62,18 +62,23 @@ export default class Grid_RestaurantList extends React.Component {
   }
 
   handleFoodClick(fooditem, e, idx, sortedRestaurent){
-    this.setState({
-      selected: !this.state.selected
-    }, ()=>{
-      this.props.handleFoodItemState( this, fooditem );
-    })
 
     console.log('price: ', fooditem.price.length)
-    fooditem.is_closed = true;
-
+    // console.log(fooditem.is_closed);
+    fooditem.is_closed = !fooditem.is_closed;
+    // console.log(fooditem.is_closed);
     this.setState({
       lastClickedIdx: idx
     });
+
+    this.setState({
+      selected: !this.state.selected
+    }, ()=>{
+      // console.log('inside:', fooditem.is_closed);
+      this.props.handleFoodItemState( this, fooditem, fooditem.is_closed );
+    })
+
+
 
   
   }
@@ -137,7 +142,6 @@ export default class Grid_RestaurantList extends React.Component {
               <img 
                 src={fooditem.image_url} 
                 className="avoid-clicksSean"
-                onClick={(e) => (this.handleFoodClick(fooditem, e, idx))}
               />
               
               </GridTile>
