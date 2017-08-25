@@ -1,8 +1,7 @@
 const yelp = require('yelp-fusion');
 const yelpConfig = require('../../config.js');
 
-
-var searchAttr = function (searchCity, callback){
+var searchAttr = function(searchCity, callback) {
   var attrResult = {};
 
   const clientId = yelpConfig.clientId;
@@ -11,7 +10,7 @@ var searchAttr = function (searchCity, callback){
 
   const token = yelp.accessToken(clientId, clientSecret).then(response => {
 
-    // console.log('TOKEN ', response.jsonBody.access_token);
+    console.log('TOKEN ', response.jsonBody.access_token);
   }).catch(e => {
     console.log('ERROR ', e);
   });
@@ -21,19 +20,19 @@ var searchAttr = function (searchCity, callback){
   const client = yelp.client(yelpToken);
 
   client.search({
-    term:'Attractions',
+    term: 'Attractions',
     location: searchCity,
     limit: 12
   })
 
-  .then(response => {
-    attrResult = response.jsonBody.businesses;
-    callback(attrResult);
-  })
+    .then(response => {
+      attrResult = response.jsonBody.businesses;
+      callback(attrResult);
+    })
 
-  .catch(e => {
-    console.log(e);
-  });
+    .catch(e => {
+      console.log(e);
+    });
 
 }
 
