@@ -69,11 +69,13 @@ export default class Grid_HotelList extends React.Component {
         lastClickedIdx: idx
       });
     } else {
-      console.log('sortedHotel', sortedHotels);
-      sortedHotels[this.state.lastClickedIdx].is_closed = false;
-      this.setState({
-        lastClickedIdx: idx
-      });
+      // console.log('sortedHotel', sortedHotels);
+      if (sortedHotels !== undefined) {
+        sortedHotels[this.state.lastClickedIdx].is_closed = false;
+        this.setState({
+          lastClickedIdx: idx
+        });
+      }
     }
   }
 
