@@ -1,6 +1,9 @@
 import React from 'react';
 import HotelEntry from './HotelEntry.jsx';
 
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import GridListExampleSimple from './GridListExampleSimple.jsx';
+
 class Hotel extends React.Component {
   constructor(props) {
     super(props);
@@ -12,6 +15,9 @@ class Hotel extends React.Component {
     if (this.props.hotels.length > 0) {
       return (
          <div>
+          <MuiThemeProvider>
+            <GridListExampleSimple />
+          </MuiThemeProvider>
           { this.props.hotels.map((hotel,index) => <HotelEntry hotel={hotel} index={index} key={index} handleHotelClick={this.props.handleHotelClick.bind(this)}/>)}
         </div>
       )
