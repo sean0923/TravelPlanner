@@ -1,4 +1,6 @@
 import React from 'react';
+import DatePicker from 'material-ui/DatePicker';
+
 
 class Calendar extends React.Component {
 
@@ -9,7 +11,11 @@ class Calendar extends React.Component {
           <label >{this.props.description} Date:</label>
         </div>
         <div className="input" onChange = {this.props.handleChange} >
+
           <input type="date" className="input-text" placeholder="mm/dd/yyyy"></input>
+
+          <DatePicker hintText="Landscape Dialog" mode="landscape" autoOk="true"/>
+
         </div>
       </div>
     )
