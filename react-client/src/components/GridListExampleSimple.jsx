@@ -102,99 +102,49 @@ class GridListExampleSimple extends React.Component {
       lastClickedIdx: undefined,
       isStarClicked: false
     }
-
-    this.toggleStar = this.toggleStar.bind(this);
-
-  }
-
-  toggleStar (tile, idx, tilesData) {
-    // console.log(idx);
-    console.log('state clicked:', this.state.lastClickedIdx);
-    tile.isStarClicked = true;
-    if (this.state.lastClickedIdx === undefined) { // if user cick it for the first time 
-      this.setState({ 
-        lastClickedIdx: idx,
-      });
-    } else { // if user click star for more than first time !!!
-      tilesData[this.state.lastClickedIdx].isStarClicked = false; // <-- so that user can only click one hotel
-      this.setState({
-        lastClickedIdx: idx,
-      });
-    }
-
   }
 
   render() {
     return(
       <div style={styles.root}>
-        {/* <div style={styles.gridTile} /> */}
         <GridList
           cellHeight={300}
           cols={3}
           padding={20}
           style={styles.gridList}
         >
-         {/* {console.log(this.props.hotels)}   */}
-        {/* actionIcon={<IconButton><StarBorder color="white" /></IconButton>} */}
           <Subheader>December</Subheader>
 
           {this.props.hotels.map((hotel, idx) => {
-            if (hotel.isStarClicked) { 
-              return (
+            return (
               <GridTile
                 key={idx} 
-                title={hotel.title}
-                actionIcon={
-                  <IconButton> 
-                    <Star onClick={() => (this.toggleStar(hotel, idx, tilesData))} color="yellow"/>
-                  </IconButton>
-                  }
-                actionPosition="left"
-                titlePosition="top"
-                titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
-                style={styles.gridTileChosen}
-                className="tileDesignChosen"
-                titleStyle={{fontSize: 20}}
-                
-              >
-                <img src={hotel.image_url} onClick={() => (this.toggleStar(hotel, idx, tilesData))}/>
-                {/* <div style={styles.gridTile} /> */}
-              </GridTile>
-              );
-            } else {
-              return (
-              <GridTile
-                key={idx} 
-                title={hotel.title}
-                actionIcon={<IconButton><StarBorder onClick={() => (this.toggleStar(hotel, idx, tilesData))} color="white" /></IconButton>}
+                title={hotel.name}
+                subtitle={hotel.location.display_address.join(', ')}
                 actionPosition="left"
                 titlePosition="top"
                 titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
                 style={styles.gridTileGray}
                 className="tileDesign_00"
               >
-              <img src={hotel.image_url} onClick={() => (this.toggleStar(hotel, idx, tilesData))}/>
+              <img 
+                src={hotel.image_url} 
+                
+              />
               
               </GridTile>
-              );
-            }
+            );
           })} 
 
+      {/* <div  className="itemBorderSean" onClick={(e) => (this.handleHotelClick(this.props.hotel, e))}>
+          <div className='avoid-clicksSean'>
+            <div className='avoid-clicksSean'><b>{this.props.hotel.name}</b></div>
+            <div className='avoid-clicksSean'>{this.props.hotel.location.display_address.join(', ')}</div>
+            <div className='avoid-clicksSean'> {this.props.hotel.price}</div>
+            <img className='avoid-clicksSean' src={this.props.hotel.image_url} width="150" height = "150"></img>
+          </div>
+      </div> */}
 
-
-          {/* {tilesData.map((tile, idx) => (
-              <GridTile
-                key={idx} 
-                title={tile.title}
-                actionIcon={<IconButton> <Star color="yellow"/></IconButton>}
-                actionPosition="left"
-                titlePosition="top"
-                titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
-              >
-                <img src={tile.img} />
-              
-              </GridTile>
-          ))} */}
         </GridList>
       </div>
     )
