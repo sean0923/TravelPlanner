@@ -489,7 +489,11 @@ class App extends React.Component {
                     <FoodList handleFoodItemState={this.handleFoodItemState.bind(this)} foodlist={this.state.foodList} />
                   </td>
                   <td id="savedTrips">
-                    <SavedTrips trips={this.state.savedTrips} remove={this.removeSingleDatabaseRecord} save={this.saveToDatabase} />
+                    <SavedTrips 
+                      trips={this.state.savedTrips} 
+                      remove={this.removeSingleDatabaseRecord} 
+                      save={this.saveToDatabase} 
+                    />
                   </td>
                 </tr>
               </tbody>
@@ -515,8 +519,11 @@ class App extends React.Component {
             <div style={makeBoxWiBoder('TabMenuForTripSumAndSave', '100%', '48%', '')}>
               <MuiThemeProvider>
 
-                <TabsForTripSumAndSave
-
+                
+                <TabsForTripSumAndSave 
+                  trips={this.state.savedTrips} 
+                  remove={this.removeSingleDatabaseRecord} 
+                  save={this.saveToDatabase} 
                 />
 
               </MuiThemeProvider>

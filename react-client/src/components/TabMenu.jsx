@@ -46,7 +46,6 @@ export default class TabMenu extends React.Component {
         </Tab>
         <Tab label="Hotels" value="b">
           <div>
-            <h2 style={styles.headline}>Controllable Tab B</h2>
             <Hotels handleHotelClick={this.props.handleHotelClick} hotels={this.props.hotels}/>
           </div>
         </Tab>
@@ -58,7 +57,6 @@ export default class TabMenu extends React.Component {
         </Tab>
         <Tab label="Restaurants" value="D">
           <div>
-            <h2 style={styles.headline}>Controllable Tab B</h2>
             <FoodList handleFoodItemState={this.props.handleFoodItemState} foodlist={this.props.foodlist}/>
           </div>
         </Tab>
