@@ -134,18 +134,19 @@ class GridListExampleSimple extends React.Component {
           padding={20}
           style={styles.gridList}
         >
-          {/* actionIcon={<IconButton><StarBorder color="white" /></IconButton>} */}
+         {/* {console.log(this.props.hotels)}   */}
+        {/* actionIcon={<IconButton><StarBorder color="white" /></IconButton>} */}
           <Subheader>December</Subheader>
 
-          {tilesData.map((tile, idx) => {
-            if (tile.isStarClicked) { 
+          {this.props.hotels.map((hotel, idx) => {
+            if (hotel.isStarClicked) { 
               return (
               <GridTile
                 key={idx} 
-                title={tile.title}
+                title={hotel.title}
                 actionIcon={
                   <IconButton> 
-                    <Star onClick={() => (this.toggleStar(tile, idx, tilesData))} color="yellow"/>
+                    <Star onClick={() => (this.toggleStar(hotel, idx, tilesData))} color="yellow"/>
                   </IconButton>
                   }
                 actionPosition="left"
@@ -156,7 +157,7 @@ class GridListExampleSimple extends React.Component {
                 titleStyle={{fontSize: 20}}
                 
               >
-                <img src={tile.img} onClick={() => (this.toggleStar(tile, idx, tilesData))}/>
+                <img src={hotel.image_url} onClick={() => (this.toggleStar(hotel, idx, tilesData))}/>
                 {/* <div style={styles.gridTile} /> */}
               </GridTile>
               );
@@ -164,15 +165,15 @@ class GridListExampleSimple extends React.Component {
               return (
               <GridTile
                 key={idx} 
-                title={tile.title}
-                actionIcon={<IconButton><StarBorder onClick={() => (this.toggleStar(tile, idx, tilesData))} color="white" /></IconButton>}
+                title={hotel.title}
+                actionIcon={<IconButton><StarBorder onClick={() => (this.toggleStar(hotel, idx, tilesData))} color="white" /></IconButton>}
                 actionPosition="left"
                 titlePosition="top"
                 titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
                 style={styles.gridTileGray}
                 className="tileDesign_00"
               >
-              <img src={tile.img} onClick={() => (this.toggleStar(tile, idx, tilesData))}/>
+              <img src={hotel.image_url} onClick={() => (this.toggleStar(hotel, idx, tilesData))}/>
               
               </GridTile>
               );
