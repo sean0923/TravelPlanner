@@ -13,7 +13,9 @@ export default class Map extends React.Component {
   }
 
   renderMap() {
-    const coords = { lat: 48.858608, lng: 2.294471 };
+    console.log('Render Map Coords: ', this.props.location);
+    const coords = { lat: 48.858608, lng: 2.294471 }; //Paris
+    // const coords = { lat: 35.6895, lng: 139.6917 };
 
     this.map = new google.maps.Map(document.getElementById('map'), {
       zoom: 11,
