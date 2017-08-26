@@ -20,6 +20,7 @@ import TabsForTripSumAndSave from './components/TabsForTripSumAndSave.jsx';
 import axios from 'axios';
 
 const boxGenFile = require('./boxGenerator.js');
+// const makeBoxWiBoder = boxGenFile.makeBoxWiBoder;
 const makeBoxWiNoBoder = boxGenFile.makeBoxWiNoBoder;
 
 class App extends React.Component {
@@ -474,7 +475,6 @@ class App extends React.Component {
     return (
       <div>
         <h1 id='title'>Wanderly</h1>
-        <h2 id='quote'>"To Travel Where Your Heart Desires"</h2>
 
         <MuiThemeProvider>
           <span><SearchBar onSearch={this.onSearch} /></span>
@@ -547,6 +547,7 @@ class App extends React.Component {
               />
             </h2>
             </div>
+            <div style={makeBoxWiNoBoder('marginBtwMapAnd', '100%', '2%')} />
 
             <div style={makeBoxWiNoBoder('TabMenuForTripSumAndSave', '100%', '48%')}>
               <MuiThemeProvider>

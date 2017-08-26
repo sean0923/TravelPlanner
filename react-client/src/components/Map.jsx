@@ -16,6 +16,9 @@ export default class Map extends React.Component {
     this.renderMap = this.renderMap.bind(this);
   }
 
+  /**
+  * Before the Initial Render, we show a default city, Paris
+  */
   componentWillMount() {
     if (!this.state.coords.lat) {
       console.log('Invoked');
@@ -40,7 +43,7 @@ export default class Map extends React.Component {
     if (this.state.coords.lat) {
       this.map = new google.maps.Map(document.getElementById('map'), {
         mapTypeId: google.maps.MapTypeId.HYBRID,
-        zoom: 12,
+        zoom: 11,
         center: {
           lat: this.state.coords.lat,
           lng: this.state.coords.lng
@@ -119,19 +122,19 @@ export default class Map extends React.Component {
 
   render() {
     const mapStyle = {
-      width: 480,
-      height: 480,
+      width: 475,
+      height: 375,
       flex: 1,
       border: '1px solid black',
       alignItems: 'center',
+      textAlign: 'center',
     };
     return (
       <div>
         <div ref="map" id="map" style={mapStyle}>
-          <text style={{ textAlign: 'center' }}>
-            Loading Map...</text>
+          <text>Loading Map...</text>
         </div>
-      </div >
+      </div>
     );
   }
 }
