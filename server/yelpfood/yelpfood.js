@@ -3,21 +3,15 @@ const yelpConfig = require('../../config.js');
 
 var searchFood = function(searchCity, callback) {
 
-
   var foodResult = [];
-
   const clientId = yelpConfig.clientId;
-
   const clientSecret = yelpConfig.clientSecret;
-
 
   // const token = yelp.accessToken(clientId, clientSecret).then(response => {
   //   // console.log('TOKEN ', response.jsonBody.access_token);
   // }).catch(e => {
   //   console.log('ERROR ', e);
   // });
-
-
 
   var yelpToken = process.env.YELP_TOKEN || yelpConfig.yelpToken;
   const client = yelp.client(yelpToken);
@@ -62,7 +56,6 @@ var searchFood = function(searchCity, callback) {
       businessList.push(...response.jsonBody.businesses);
       return businessList;
     }, []);
-
     callback(foodResult);
 
   })

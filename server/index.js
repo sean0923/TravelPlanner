@@ -12,23 +12,22 @@ const geolocation = require('./geolocationAPI/geolocation.js');
 app.use(express.static(__dirname + '/../react-client/dist'));
 app.use(bodyParser.urlencoded({ extended: false }));
 
-
 app.post('/attraction', function(req, res) {
   const attrLocation = req.body.location;
   yelpattr.searchAttr(attrLocation, function(attrResult) {
     res.status(200).send(JSON.stringify(attrResult));
-  })
-})
+  });
+});
 
 app.get('/hotels', (req, res) => {
   hotel.hotel(req.query, (data) => {
     res.end(JSON.stringify(data))
-  })
-})
+  });
+});
 
 app.post('/food', function(req, res) {
   let location = req.body.location;
-  
+
   yelpfood.searchFood(location, function(foodresult) {
     res.status(200).send(JSON.stringify(foodresult));
   });
@@ -88,9 +87,8 @@ app.get('/getAll', (req, res) => {
   })
 });
 
-
 var port = process.env.PORT || 3000;
 
 app.listen(port, function() {
   console.log(`listening on port ${port}`);
-})
+});
