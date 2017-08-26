@@ -502,10 +502,10 @@ class App extends React.Component {
                 handleFoodItemState={this.handleFoodItemState.bind(this)}
                 foodlist={this.state.foodList}
               />
-              
+
             </MuiThemeProvider>
-{/* {console.log('supposed to be foodlist: ', this.state.foodList)} */}
-{/* {console.log('supposed to be hotels: ', this.state.hotels)} */}
+            {/* {console.log('supposed to be foodlist: ', this.state.foodList)} */}
+            {/* {console.log('supposed to be hotels: ', this.state.hotels)} */}
             <table className='table'>
               <thead>
                 <tr>
@@ -553,6 +553,10 @@ class App extends React.Component {
             <div style={makeBoxWiBoder('MAP', '100%', '50%', 'green')}><h2>
               <Map
                 coords={this.state.coords}
+                saved={this.state.savedChoices}
+                attractions={this.state.attrItems}
+                hotels={this.state.hotels}
+                food={this.state.foodList}
               />
             </h2>
             </div>
