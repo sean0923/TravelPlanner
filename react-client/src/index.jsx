@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Route, Router, browserHistory, IndexRoute } from 'react-router';
 import $ from 'jquery';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
@@ -15,6 +16,8 @@ import SavedTrips from './components/savedTrips.jsx';
 import SearchBar from './components/SearchBar.jsx';
 import TabMenu from './components/TabMenu.jsx';
 import TabsForTripSumAndSave from './components/TabsForTripSumAndSave.jsx';
+// import Login from './components/Login.jsx';
+import axios from 'axios';
 
 const boxGenFile = require('./boxGenerator.js');
 const makeBoxWiNoBoder = boxGenFile.makeBoxWiNoBoder;
@@ -87,6 +90,7 @@ class App extends React.Component {
 
   handleHotelClick(hotel, event) {
     this.removeClass('tileDesignChosen');
+
     if (this.state.selectedHotelId === hotel.id) {
       this.state.savedChoices[0].hotel = {};
       delete this.state.selectedHotelId;
@@ -129,6 +133,7 @@ class App extends React.Component {
       }
     };
     var context = this;
+
     qpx.getInfo(body, function(error, data) {
       context.setState({
         flights: data.trips.tripOption
@@ -150,7 +155,7 @@ class App extends React.Component {
       method: "POST"
     })
       .then((resp) => resp.json())
-      .then(function(data) {
+      .then(function (data) {
         if (data.airports[0].name.includes('All Airports')) {
           codes.departLoc = data.airports[1].iata;
         } else {
@@ -311,7 +316,7 @@ class App extends React.Component {
           addresses: addAttrAddress
         });
       },
-      error: function(data) {
+      error: function (data) {
       }
     })
   }
@@ -442,7 +447,7 @@ class App extends React.Component {
       success: (data) => {
         context.setState({
           savedTrips: data
-        }, function() {
+        }, function () {
         })
       },
       error: () => {
@@ -459,7 +464,7 @@ class App extends React.Component {
       data: { uniqueID: uniqueID },
       success: () => {
         context.retrieveFromDatabase();
-      }, error: function() {
+      }, error: function () {
         console.log('client received an error when attempting to remove from db');
       }
     });
@@ -559,4 +564,38 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+function isLoggedIn(nextState, replace, cb) {
+  axios.get('/loggedin')
+    .then(res => {
+      if (res.data === "") {
+        replace('/login');
+      }
+      cb();
+    })
+    .catch(err => {
+      cb();
+    });
+}
+
+function redirectToLogin() {
+  window.location.href = '/login';
+}
+
+const Login = () => {
+  return (
+    <a href='auth/facebook'>Login With Facebook</a>
+  )
+}
+
+const routes = (
+  <Router history={browserHistory}>
+    <Route path="/" component={App} onEnter={isLoggedIn} />
+    <Route path="/login" component={Login} />
+    <Route path="*" onEnter={redirectToLogin} />
+  </Router>
+);
+
+ReactDOM.render(
+  routes
+  , document.getElementById('app'));
+
