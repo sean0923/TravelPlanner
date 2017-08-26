@@ -1,5 +1,4 @@
 import React from 'react';
-// import Marker from './Marker.jsx';
 
 export default class Map extends React.Component {
   constructor(props) {
@@ -18,25 +17,21 @@ export default class Map extends React.Component {
   }
 
   /**
-  * Before the Initial Render, we show a default city with markers
+  * Before the Initial Render, we show a default city, Paris
   */
   componentWillMount() {
     if (!this.state.coords.lat) {
       console.log('Invoked');
       this.setState({
+        // Paris
         coords: {
-          lat: -33.92,
-          lng: 151.25
+          lat: 48.858608,
+          lng: 2.294471
         },
-        attractions: [
-          ['Bondi Beach', -33.890542, 151.274856, 4],
-          ['Coogee Beach', -33.923036, 151.259052, 5],
-          ['Cronulla Beach', -34.028249, 151.157507, 3],
-          ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
-          ['Maroubra Beach', -33.950198, 151.259302, 1]
-        ]
       });
     }
+    console.log('Normal');
+    return;
   }
 
   componentDidMount() {
@@ -45,34 +40,58 @@ export default class Map extends React.Component {
 
   renderMap() {
     // console.log(this.state.coords, 'renderMap Location');
-    this.map = new google.maps.Map(document.getElementById('map'), {
-      mapTypeId: google.maps.MapTypeId.HYBRID,
-      zoom: 11,
-      center: {
-        lat: this.state.coords.lat,
-        lng: this.state.coords.lng
-      }
-    });
-
-    var infowindow = new google.maps.InfoWindow();
-    var marker, i;
-
-    let toPutMarkers = this.state.attractions;
-
-    for (i = 0; i < toPutMarkers.length; i++) {
-      marker = new google.maps.Marker({
-        position: new google.maps.LatLng(toPutMarkers[i][1], toPutMarkers[i][2]),
-        map: this.map
+    if (this.state.coords.lat) {
+      this.map = new google.maps.Map(document.getElementById('map'), {
+        mapTypeId: google.maps.MapTypeId.HYBRID,
+        zoom: 11,
+        center: {
+          lat: this.state.coords.lat,
+          lng: this.state.coords.lng
+        }
       });
 
-      google.maps.event.addListener(marker, 'click', (function(marker, i) {
-        return function() {
-          infowindow.setContent(toPutMarkers[i][0]);
-          infowindow.open(this.map, marker);
-        }
-      })(marker, i));
-    }
+      var markers = [this.state.attractions, this.state.hotels, this.state.food];
 
+      if (markers[0].length === 0) {
+        // console.log('No Markers to Render Yet');
+        return;
+      }
+
+      let that = this;
+      var markerCreate = function(type, iconColor) {
+
+        var infowindow = new google.maps.InfoWindow();
+        var marker, i;
+
+        for (i = 0; i < type.length; i++) {
+          // console.log(type[i].coordinates.latitude, 'LAT');
+          // If there then render marker
+          if (type[i].coordinates.latitude) {
+            marker = new google.maps.Marker({
+              position: new google.maps.LatLng(type[i].coordinates.latitude, type[i].coordinates.longitude),
+              map: that.map,
+              icon: iconColor
+            });
+
+            google.maps.event.addListener(marker, 'click', (function(marker, i) {
+              return function() {
+                infowindow.setContent(type[i].name);
+                infowindow.open(that.map, marker);
+              }
+            })(marker, i));
+          } else {
+            console.log('Invalid Latitude');
+          }
+        }
+      };
+
+      markerCreate(markers[0], 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png');
+      markerCreate(markers[1], 'http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+      markerCreate(markers[2], 'http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+
+    } else {
+      // console.log('Map Not Rendered');
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -88,6 +107,7 @@ export default class Map extends React.Component {
         hotels: nextProps.hotels,
         food: nextProps.food
       });
+      // console.log('State Changed', this.state)
     } else {
       // console.log('No Change in Props');
     }
@@ -95,7 +115,7 @@ export default class Map extends React.Component {
 
   componentWillUpdate(nextProps, nextState) {
     if (nextProps !== this.props) {
-      console.log('Will Update', nextProps, nextState);
+      // console.log('Will Update', nextProps, nextState);
     }
     this.renderMap();
   }
@@ -115,33 +135,6 @@ export default class Map extends React.Component {
           Loading Map...
         </div>
       </div>
-
     );
   }
 }
-/**
- *          <Marker
-          saved={this.props.saved}
-          attractions={this.props.attractions}
-          hotels={this.props.hotels}
-          food={this.props.food}
-        />
-        */
-// Default City of Paris
-// Map.defaultProps = {
-//   city: 'Paris',
-//   coords: {
-//     lat: 48.858608,
-//     lng: 2.294471
-//   }
-// };
-// arrivalLocation: 'Tokyo',
-// coords: {
-//   lat: 35.6895,
-//   lng: 139.6917
-// },
-// arrivalLocation: 'Paris',
-// coords: {
-//   lat: 48.858608,
-//   lng: 2.294471
-// },

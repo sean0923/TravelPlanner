@@ -307,16 +307,12 @@ class App extends React.Component {
       type: 'POST',
       data: { location: this.state.arrivalLocation },
       success: (res) => {
-
         const parsedAttr = JSON.parse(res);
-
         const addAttrAddress = this.state.addresses
           .concat(parsedAttr.map(this.responseToSaveAddress('attraction')));
-
         this.setState({
           attrItems: parsedAttr,
           addresses: addAttrAddress
-
         });
       },
       error: function(data) {
@@ -330,14 +326,10 @@ class App extends React.Component {
       data: { location: this.state.arrivalLocation },
       type: 'POST',
       success: (res) => {
-
         const parsedFood = JSON.parse(res);
-
         const addFoodAddress = this.state.addresses
           .concat(parsedFood.map(this.responseToSaveAddress('food')));
-
         // console.log('post food req: ', parsedFood);
-
         this.setState({
           foodList: parsedFood,
           addresses: addFoodAddress
@@ -368,7 +360,6 @@ class App extends React.Component {
   responseToSaveAddress(category) {
     return function({ name, location, coordinates }) {
       const display_address = location.display_address;
-
       return {
         category,
         name,
@@ -484,10 +475,10 @@ class App extends React.Component {
       <div>
 
         <h1 id='title'>Wanderly</h1>
-        
-          <MuiThemeProvider>
-            <span><SearchBar onSearch={this.onSearch} /></span>
-          </MuiThemeProvider>
+
+        <MuiThemeProvider>
+          <span><SearchBar onSearch={this.onSearch} /></span>
+        </MuiThemeProvider>
 
         <Weather information={this.state.weather} icon={this.state.weatherIcon} />
 

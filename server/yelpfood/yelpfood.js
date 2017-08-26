@@ -62,7 +62,6 @@ var searchFood = function(searchCity, callback) {
       businessList.push(...response.jsonBody.businesses);
       return businessList;
     }, []);
-
     callback(foodResult);
 
   })
