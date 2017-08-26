@@ -1,11 +1,13 @@
 const yelp = require('yelp-fusion');
-const yelpConfig = require('../../config.js');
+if ( process.env.NODE_ENV !== 'production' ) { // if we are not at heroku
+  const config = require('../../config.js');
+}
 
 var searchAttr = function(searchCity, callback) {
 
   var attrResult = {};
-  const clientId = yelpConfig.clientId;
-  const clientSecret = yelpConfig.clientSecret;
+  const clientId = config.clientId;
+  const clientSecret = config.clientSecret;
 
   const token = yelp.accessToken(clientId, clientSecret).then(response => {
 
@@ -14,7 +16,7 @@ var searchAttr = function(searchCity, callback) {
     console.log('ERROR ', e);
   });
 
-  var yelpToken = process.env.YELP_TOKEN || yelpConfig.yelpToken;
+  var yelpToken = process.env.YELP_TOKEN || config.yelpToken;
   const client = yelp.client(yelpToken);
 
   client.search({

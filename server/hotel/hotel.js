@@ -1,6 +1,8 @@
 const yelp = require('yelp-fusion');
 const request = require('request');
-const yelpConfig = require('../../config.js');
+if ( process.env.NODE_ENV !== 'production' ) { // if we are not at heroku
+  const config = require('../../config.js');
+}
 
 var hotel = function(info, callback) {
 

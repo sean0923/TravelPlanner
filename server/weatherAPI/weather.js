@@ -1,5 +1,7 @@
 var request = require('request');
-var config = require('../../config.js');
+if ( process.env.NODE_ENV !== 'production' ) { // if we are not at heroku
+  const config = require('../../config.js');
+}
 
 var requestWeather = function(geoCode, date, callback) {
   var secretKey = process.env.WEATHER_API || config.darkskyAPI;

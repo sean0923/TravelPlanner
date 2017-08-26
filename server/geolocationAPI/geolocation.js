@@ -1,5 +1,7 @@
 var request = require('request');
-var config = require('../../config.js');
+if ( process.env.NODE_ENV !== 'production' ) { // if we are not at heroku
+  const config = require('../../config.js');
+}
 
 var requestGeolocation = function(location, callback) {
   var key = process.env.GEO_API || config.geolocationAPI;

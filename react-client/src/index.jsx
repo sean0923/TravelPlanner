@@ -5,7 +5,9 @@ import $ from 'jquery';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import Attraction from './components/Attraction.jsx';
-import config from '../../config.js';
+if ( process.env.NODE_ENV !== 'production' ) { // if we are not at heroku
+  const config = require('../../config.js');
+}
 import Flights from './components/Flights.jsx';
 const FlightAPI = require('qpx-express');
 import FoodList from './components/FoodList.jsx';
