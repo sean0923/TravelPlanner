@@ -1,6 +1,7 @@
 const yelp = require('yelp-fusion');
+var config;
 if ( process.env.NODE_ENV !== 'production' ) { // if we are not at heroku
-  const config = require('../../config.js');
+  var config = require('../../config.js');
 }
 
 var searchFood = function(searchCity, callback) {
