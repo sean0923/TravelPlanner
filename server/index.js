@@ -51,7 +51,15 @@ app.post('/weather', function(req, res) {
         }));
     });
   });
-})
+});
+
+app.post('/city', function(req, res) {
+  geolocation.requestGeolocation(req.body.city, function(data) {
+    geoCode = data.results[0].geometry.location;
+    // console.log('Server GeoCode', geoCode);
+    res.status(201).send(geoCode);
+  });
+});
 
 app.post('/save', (req, res) => {
   var data = JSON.parse(req.body.data);

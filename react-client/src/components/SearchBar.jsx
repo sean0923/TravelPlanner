@@ -6,8 +6,8 @@ class SearchBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      departureLocation: 'hong kong',
-      arrivalLocation: 'tokyo',
+      departureLocation: 'Hong Kong',
+      arrivalLocation: 'Toyko, Japan',
       departureDate: '2017-10-24',
       returnDate: '2017-10-31',
       // histories: [["hong kong", "tokyo", "2017-10-24", "2017-10-31"]]

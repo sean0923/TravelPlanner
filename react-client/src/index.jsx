@@ -24,9 +24,11 @@ const makeBoxWiNoBoder = boxGenFile.makeBoxWiNoBoder;
 class App extends React.Component {
   constructor(props) {
     super(props);
+    const google = window.google;
     this.state = {
       departureLocation: '',
       arrivalLocation: '',
+      coords: {},
       departureDate: '',
       arrivalDate: '',
       returnDate: '',
@@ -52,6 +54,7 @@ class App extends React.Component {
       weatherIcon: ''
     }
     this.onSearch = this.onSearch.bind(this);
+    this.findLocation = this.findLocation.bind(this);
     this.responseToSaveAddress = this.responseToSaveAddress.bind(this);
     this.requestWeather = this.requestWeather.bind(this);
     this.removeSingleDatabaseRecord = this.removeSingleDatabaseRecord.bind(this);
@@ -272,6 +275,28 @@ class App extends React.Component {
       this.getAirportCodes(departureLocation, arrivalLocation);
       this.hotelsSearch(arrivalLocation);
       this.requestWeather(arrivalLocation, departureDate);
+      this.findLocation();
+    });
+  }
+
+  findLocation() {
+    $.ajax({
+      url: '/city',
+      type: 'POST',
+      data: { city: this.state.arrivalLocation },
+      success: (res) => {
+        // console.log('Ajax Success!', res);
+        this.setState({
+          coords: {
+            lat: res.lat,
+            lng: res.lng
+          }
+        });
+        // console.log(this.state.coords, 'State Location');
+      },
+      error: function(err) {
+        console.log('Map Rendering Error - AJAX Failed', err);
+      }
     });
   }
 
@@ -506,10 +531,10 @@ class App extends React.Component {
                     <FoodList handleFoodItemState={this.handleFoodItemState.bind(this)} foodlist={this.state.foodList} />
                   </td>
                   <td id="savedTrips">
-                    <SavedTrips 
-                      trips={this.state.savedTrips} 
-                      remove={this.removeSingleDatabaseRecord} 
-                      save={this.saveToDatabase} 
+                    <SavedTrips
+                      trips={this.state.savedTrips}
+                      remove={this.removeSingleDatabaseRecord}
+                      save={this.saveToDatabase}
                     />
                   </td>
                 </tr>
@@ -527,7 +552,7 @@ class App extends React.Component {
 
             <div style={makeBoxWiBoder('MAP', '100%', '50%', 'green')}><h2>
               <Map
-                location={this.state.arrivalLocation}
+                coords={this.state.coords}
               />
             </h2>
             </div>
@@ -536,11 +561,11 @@ class App extends React.Component {
             <div style={makeBoxWiBoder('TabMenuForTripSumAndSave', '100%', '48%', '')}>
               <MuiThemeProvider>
 
-                
-                <TabsForTripSumAndSave 
-                  trips={this.state.savedTrips} 
-                  remove={this.removeSingleDatabaseRecord} 
-                  save={this.saveToDatabase} 
+
+                <TabsForTripSumAndSave
+                  trips={this.state.savedTrips}
+                  remove={this.removeSingleDatabaseRecord}
+                  save={this.saveToDatabase}
                 />
 
               </MuiThemeProvider>
