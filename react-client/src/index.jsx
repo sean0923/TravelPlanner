@@ -158,7 +158,7 @@ class App extends React.Component {
       method: "POST"
     })
       .then((resp) => resp.json())
-      .then(function (data) {
+      .then(function(data) {
         if (data.airports[0].name.includes('All Airports')) {
           codes.departLoc = data.airports[1].iata;
         } else {
@@ -319,7 +319,7 @@ class App extends React.Component {
           addresses: addAttrAddress
         });
       },
-      error: function (data) {
+      error: function(data) {
       }
     })
   }
@@ -450,7 +450,7 @@ class App extends React.Component {
       success: (data) => {
         context.setState({
           savedTrips: data
-        }, function () {
+        }, function() {
         })
       },
       error: () => {
@@ -467,7 +467,7 @@ class App extends React.Component {
       data: { uniqueID: uniqueID },
       success: () => {
         context.retrieveFromDatabase();
-      }, error: function () {
+      }, error: function() {
         console.log('client received an error when attempting to remove from db');
       }
     });
@@ -477,7 +477,7 @@ class App extends React.Component {
     return (
       <div>
         <h1 id='title'>Wanderly</h1>
-
+        <h2 id='quote'>"Travel to Where Your Heart Desires"</h2>
         <MuiThemeProvider>
           <span><SearchBar onSearch={this.onSearch} /></span>
         </MuiThemeProvider>
