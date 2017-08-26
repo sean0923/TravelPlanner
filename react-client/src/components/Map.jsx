@@ -126,13 +126,13 @@ export default class Map extends React.Component {
       height: 375,
       flex: 1,
       border: '1px solid black',
-      alignItems: 'center'
+      alignItems: 'center',
+      textAlign: 'center',
     };
-
     return (
       <div>
         <div ref="map" id="map" style={mapStyle}>
-          Loading Map...
+          <text>Loading Map...</text>
         </div>
       </div>
     );
