@@ -3,12 +3,21 @@ import React from 'react';
 export default class Map extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      coords: {
-        lat: this.props.coords.lat,
-        lng: this.props.coords.lng
-      }
-    };
+    if (!this.props.coords.lat) {
+      this.state = {
+        coords: {
+          lat: 48.858608,
+          lng: 2.294471
+        }
+      };
+    } else if (this.props.coords.lat) {
+      this.state = {
+        coords: {
+          lat: this.props.coords.lat,
+          lng: this.props.coords.lng
+        }
+      };
+    }
     this.renderMap = this.renderMap.bind(this);
   }
 
@@ -17,8 +26,7 @@ export default class Map extends React.Component {
   }
 
   renderMap() {
-    console.log(this.state.coords, 'renderMap Location');
-
+    // console.log(this.state.coords, 'renderMap Location');
     this.map = new google.maps.Map(document.getElementById('map'), {
       zoom: 11,
       center: {
@@ -30,22 +38,24 @@ export default class Map extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.coords !== this.props.coords) {
-      console.log('New Props!', nextProps);
+      // console.log('New Props!', nextProps);
       this.setState({
         coords: {
           lat: nextProps.coords.lat,
           lng: nextProps.coords.lng
         }
       });
-      console.log('New State', this.state.coords);
     } else {
       console.log('No Change in Props');
     }
   }
 
-  // componentWillUpdate(nextProps, nextState) {
-  //   console.log('Will Update', nextProps, nextState);
-  // }
+  componentWillUpdate(nextProps, nextState) {
+    if (nextProps.coords !== this.props.coords) {
+      console.log('Will Update', nextProps, nextState);
+    }
+    this.renderMap();
+  }
 
   render() {
     const mapStyle = {
@@ -75,3 +85,13 @@ export default class Map extends React.Component {
 //     lng: 2.294471
 //   }
 // };
+// arrivalLocation: 'Tokyo',
+// coords: {
+//   lat: 35.6895,
+//   lng: 139.6917
+// },
+// arrivalLocation: 'Paris',
+// coords: {
+//   lat: 48.858608,
+//   lng: 2.294471
+// },

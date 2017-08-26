@@ -27,18 +27,8 @@ class App extends React.Component {
     const google = window.google;
     this.state = {
       departureLocation: '',
-      // arrivalLocation: 'Tokyo',
-      // coords: {
-      //   lat: 35.6895,
-      //   lng: 139.6917
-      // },
-      arrivalLocation: 'Paris',
-      coords: {
-        lat: 48.858608,
-        lng: 2.294471
-      },
-      // arrivalLocation: '',
-      // coords: {},
+      arrivalLocation: '',
+      coords: {},
       departureDate: '',
       arrivalDate: '',
       returnDate: '',
@@ -296,7 +286,7 @@ class App extends React.Component {
       type: 'POST',
       data: { city: this.state.arrivalLocation },
       success: (res) => {
-        console.log('Ajax Success!', res);
+        // console.log('Ajax Success!', res);
         this.setState({
           coords: {
             lat: res.lat,
