@@ -28,8 +28,9 @@ app.get('/hotels', (req, res) => {
 
 app.post('/food', function(req, res) {
   let location = req.body.location;
-  yelpfood.searchFood(location, function(foodResult) {
-    res.status(200).send(JSON.stringify(foodResult));
+  
+  yelpfood.searchFood(location, function(foodresult) {
+    res.status(200).send(JSON.stringify(foodresult));
   });
 });
 
