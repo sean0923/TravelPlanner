@@ -15,6 +15,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TabMenu from './components/TabMenu.jsx';
 import TabsForTripSumAndSave from './components/TabsForTripSumAndSave.jsx';
 
+
 import Map from './components/Map.jsx';
 
 const boxGenFile = require('./boxGenerator.js');
@@ -483,7 +484,11 @@ class App extends React.Component {
       <div>
 
         <h1 id='title'>Wanderly</h1>
-        <span><SearchBar onSearch={this.onSearch} /></span>
+        
+          <MuiThemeProvider>
+            <span><SearchBar onSearch={this.onSearch} /></span>
+          </MuiThemeProvider>
+
         <Weather information={this.state.weather} icon={this.state.weatherIcon} />
 
 
