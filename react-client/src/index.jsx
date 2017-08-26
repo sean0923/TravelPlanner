@@ -5,12 +5,18 @@ import $ from 'jquery';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import Attraction from './components/Attraction.jsx';
+<<<<<<< HEAD
 
 var config;
 try {
   config = require('../../config.js');
 } catch (e) {
   config = undefined;
+=======
+var config;
+if ( process.env.NODE_ENV !== 'production' ) { // if we are not at heroku
+  var config = require('../../config.js');
+>>>>>>> Fig bug related to require config.js
 }
 
 import Flights from './components/Flights.jsx';
@@ -541,7 +547,11 @@ class App extends React.Component {
                 </tr>
               </tbody>
             </table> */}
+<<<<<<< HEAD
           </div>
+=======
+          </div> 
+>>>>>>> Fig bug related to require config.js
 
           <div style={makeBoxWiNoBoder('TabAndMapBox', '2.5%', '100%')}></div>
 

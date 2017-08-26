@@ -1,11 +1,17 @@
 const yelp = require('yelp-fusion');
 const request = require('request');
+<<<<<<< HEAD
 
 var config;
 try {
   config = require('../../config.js');
 } catch (e) {
   config = undefined;
+=======
+var config;
+if ( process.env.NODE_ENV !== 'production' ) { // if we are not at heroku
+  var config = require('../../config.js');
+>>>>>>> Fig bug related to require config.js
 }
 
 var hotel = function(info, callback) {
