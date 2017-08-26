@@ -28,8 +28,14 @@ app.get('/hotels', (req, res) => {
 
 app.post('/food', function(req, res) {
   let location = req.body.location;
+<<<<<<< HEAD
   yelpfood.searchFood(location, function(foodResult) {
     res.status(200).send(JSON.stringify(foodResult));
+=======
+  
+  yelpfood.searchFood(location, function(foodresult) {
+    res.status(200).send(JSON.stringify(foodresult));
+>>>>>>> 91a08f5928da176e9b1ac882149b022a46c21c4d
   });
 });
 
