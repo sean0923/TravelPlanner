@@ -17,7 +17,7 @@ import TabMenu from './components/TabMenu.jsx';
 import TabsForTripSumAndSave from './components/TabsForTripSumAndSave.jsx';
 
 const boxGenFile = require('./boxGenerator.js');
-const makeBoxWiBoder = boxGenFile.makeBoxWiBoder;
+// const makeBoxWiBoder = boxGenFile.makeBoxWiBoder;
 const makeBoxWiNoBoder = boxGenFile.makeBoxWiNoBoder;
 
 class App extends React.Component {
@@ -477,9 +477,9 @@ class App extends React.Component {
 
         <Weather information={this.state.weather} icon={this.state.weatherIcon} />
 
-        <div style={makeBoxWiBoder('TabAndMapBox', '100%', 800, 'red')}>
+        <div style={makeBoxWiNoBoder('TabAndMapBox', '100%', 800)}>
 
-          <div style={makeBoxWiBoder('TabMenu', '65%', '100%', 'red')}>
+          <div style={makeBoxWiNoBoder('TabMenu', '65%', '100%')}>
             <MuiThemeProvider>
               <TabMenu
                 handleFlightClick={this.handleFlightClick.bind(this)}
@@ -492,8 +492,7 @@ class App extends React.Component {
                 foodlist={this.state.foodList}
               />
             </MuiThemeProvider>
-            {/* {console.log('supposed to be foodlist: ', this.state.foodList)} */}
-            {/* {console.log('supposed to be hotels: ', this.state.hotels)} */}
+
             <table className='table'>
               <thead>
                 <tr>
@@ -530,15 +529,10 @@ class App extends React.Component {
             </table>
           </div>
 
-          <div style={makeBoxWiBoder('TabAndMapBox', '2.5%', '100%', 'red')}></div>
+          <div style={makeBoxWiNoBoder('TabAndMapBox', '2.5%', '100%')}></div>
 
-          <div style={makeBoxWiBoder('MapContainer', '32.5%', '100%')}>
-
-            {/* <div style={generateBox('l', '100%', '10%', 'red')}></div> */}
-
-            {/* <div style={generateBox('l', '100%', '2.5%', 'red')}/> */}
-
-            <div style={makeBoxWiBoder('MAP', '100%', '50%', 'green')}><h2>
+          <div style={makeBoxWiNoBoder('MapContainer', '32.5%', '100%')}>
+            <div style={makeBoxWiNoBoder('MAP', '100%', '50%')}><h2>
               <Map
                 coords={this.state.coords}
                 saved={this.state.savedChoices}
@@ -548,22 +542,18 @@ class App extends React.Component {
               />
             </h2>
             </div>
-            <div style={makeBoxWiBoder('marginBtwMapAnd', '100%', '2%', 'red')} />
+            <div style={makeBoxWiNoBoder('marginBtwMapAnd', '100%', '2%')} />
 
-            <div style={makeBoxWiBoder('TabMenuForTripSumAndSave', '100%', '48%', '')}>
+            <div style={makeBoxWiNoBoder('TabMenuForTripSumAndSave', '100%', '48%')}>
               <MuiThemeProvider>
-
                 <TabsForTripSumAndSave
                   trips={this.state.savedTrips}
                   remove={this.removeSingleDatabaseRecord}
                   save={this.saveToDatabase}
                 />
-
               </MuiThemeProvider>
             </div>
-
           </div>
-
         </div>
       </div>
     )
