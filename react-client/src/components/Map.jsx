@@ -1,11 +1,14 @@
 import React from 'react';
-// const geolocation = require('./geolocationAPI/geolocation.js');
 
 export default class Map extends React.Component {
   constructor(props) {
     super(props);
-    const google = window.google;
-    // this.googleChecker = this.googleChecker.bind(this);
+    this.state = {
+      coords: {
+        lat: this.props.coords.lat,
+        lng: this.props.coords.lng
+      }
+    };
     this.renderMap = this.renderMap.bind(this);
   }
 
@@ -14,27 +17,35 @@ export default class Map extends React.Component {
   }
 
   renderMap() {
-    // Potentially Convert Location into lat & long via geolocationAPI
-
-    // geolocation.requestGeolocation(req.body['location'], function(data) {
-    // geoCode = data.results[0].geometry.location;
-    // get lat & long from geoCode
-    // Set as props/state
-    // execute the this.map
-
-    console.log('Render Map Coords: ',
-      // this.props,
-      this.props.location
-    );
+    console.log(this.state.coords, 'renderMap Location');
 
     this.map = new google.maps.Map(document.getElementById('map'), {
       zoom: 11,
       center: {
-        lat: this.props.location.lat,
-        lng: this.props.location.lng
+        lat: this.state.coords.lat,
+        lng: this.state.coords.lng
       }
     });
   }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.coords !== this.props.coords) {
+      console.log('New Props!', nextProps);
+      this.setState({
+        coords: {
+          lat: nextProps.coords.lat,
+          lng: nextProps.coords.lng
+        }
+      });
+      console.log('New State', this.state.coords);
+    } else {
+      console.log('No Change in Props');
+    }
+  }
+
+  // componentWillUpdate(nextProps, nextState) {
+  //   console.log('Will Update', nextProps, nextState);
+  // }
 
   render() {
     const mapStyle = {
@@ -47,7 +58,7 @@ export default class Map extends React.Component {
 
     return (
       <div>
-        <div className="map" ref="map" id="map" style={mapStyle}>
+        <div ref="map" id="map" style={mapStyle}>
           Map Loading...
         </div>
       </div>
@@ -56,11 +67,11 @@ export default class Map extends React.Component {
   }
 }
 
-Map.defaultProps = {
-  // lat: 48.858608,
-  // lng: 2.294471,
-  location: {
-    lat: 48.858608,
-    lng: 2.294471
-  }
-};
+// Default City of Paris
+// Map.defaultProps = {
+//   city: 'Paris',
+//   coords: {
+//     lat: 48.858608,
+//     lng: 2.294471
+//   }
+// };

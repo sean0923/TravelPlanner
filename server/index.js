@@ -28,7 +28,7 @@ app.get('/hotels', (req, res) => {
 
 app.post('/food', function(req, res) {
   let location = req.body.location;
-  yelpfood.searchFood(location, function(foodresult) {
+  yelpfood.searchFood(location, function(foodResult) {
     res.status(200).send(JSON.stringify(foodResult));
   });
 });
@@ -50,7 +50,15 @@ app.post('/weather', function(req, res) {
         }));
     });
   });
-})
+});
+
+app.post('/city', function(req, res) {
+  geolocation.requestGeolocation(req.body['location'], function(data) {
+    geoCode = data.results[0].geometry.location;
+    // console.log('Server GeoCode', geoCode);
+    res.status(201).send(geoCode);
+  });
+});
 
 app.post('/save', (req, res) => {
   var data = JSON.parse(req.body.data);
