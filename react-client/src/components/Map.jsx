@@ -46,7 +46,7 @@ export default class Map extends React.Component {
         }
       });
     } else {
-      console.log('No Change in Props');
+      // console.log('No Change in Props');
     }
   }
 
