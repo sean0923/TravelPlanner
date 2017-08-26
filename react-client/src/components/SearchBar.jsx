@@ -34,15 +34,15 @@ class SearchBar extends React.Component {
     })
   }
 
-  handleDepartureDate(e) {
+  handleDepartureDate(date) {
     this.setState({
-      departureDate: e.target.value
+      departureDate: date
     })
   }
 
-  handleReturnDate(e) {
+  handleReturnDate(date) {
     this.setState({
-      returnDate: e.target.value
+      returnDate: date
     })
   }
 
