@@ -5,8 +5,9 @@ import $ from 'jquery';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import Attraction from './components/Attraction.jsx';
+var config;
 if ( process.env.NODE_ENV !== 'production' ) { // if we are not at heroku
-  const config = require('../../config.js');
+  var config = require('../../config.js');
 }
 import Flights from './components/Flights.jsx';
 const FlightAPI = require('qpx-express');
@@ -501,7 +502,7 @@ class App extends React.Component {
               />
             </MuiThemeProvider>
 
-            <table className='table'>
+             {/* <table className='table'>
               <thead>
                 <tr>
                   <th>Flights</th>
@@ -534,8 +535,8 @@ class App extends React.Component {
                   </td>
                 </tr>
               </tbody>
-            </table>
-          </div>
+            </table> */}
+          </div> 
 
           <div style={makeBoxWiNoBoder('TabAndMapBox', '2.5%', '100%')}></div>
 
