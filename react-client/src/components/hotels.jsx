@@ -11,6 +11,7 @@ class Hotels extends React.Component {
       hotelClicked: ''
     }
   }
+
   render() {
     if (this.props.hotels.length > 0) {
       return (
@@ -29,7 +30,6 @@ class Hotels extends React.Component {
         <h3 className="glyphicon glyphicon-home"></h3>
       )
     }
-
   }
 }
 

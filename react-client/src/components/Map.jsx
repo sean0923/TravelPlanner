@@ -122,8 +122,8 @@ export default class Map extends React.Component {
 
   render() {
     const mapStyle = {
-      width: 350,
-      height: 350,
+      width: 475,
+      height: 375,
       flex: 1,
       border: '1px solid black',
       alignItems: 'center'

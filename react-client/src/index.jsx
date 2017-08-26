@@ -1,22 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
-import Hotels from './components/Hotels.jsx'
-import Flights from './components/Flights.jsx';
-import config from '../../config.js';
-import SearchBar from './components/SearchBar.jsx';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 import Attraction from './components/Attraction.jsx';
+import config from '../../config.js';
+import Flights from './components/Flights.jsx';
+const FlightAPI = require('qpx-express');
 import FoodList from './components/FoodList.jsx';
+import Hotels from './components/Hotels.jsx'
+import Map from './components/Map.jsx';
 import Weather from './components/Weather.jsx';
 import SavedTrips from './components/savedTrips.jsx';
-const FlightAPI = require('qpx-express');
-
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import SearchBar from './components/SearchBar.jsx';
 import TabMenu from './components/TabMenu.jsx';
 import TabsForTripSumAndSave from './components/TabsForTripSumAndSave.jsx';
-
-
-import Map from './components/Map.jsx';
 
 const boxGenFile = require('./boxGenerator.js');
 const makeBoxWiBoder = boxGenFile.makeBoxWiBoder;
@@ -85,11 +83,10 @@ class App extends React.Component {
       error: (err) => {
         console.log('error !')
       }
-    })
+    });
   }
 
   handleHotelClick(hotel, event) {
-
     this.removeClass('tileDesignChosen');
     if (this.state.selectedHotelId === hotel.id) {
       this.state.savedChoices[0].hotel = {};
@@ -429,7 +426,6 @@ class App extends React.Component {
           break;
         }
       }
-
       // console.log('index:', index)
       if (index >= 0) {
         list.splice(index, 1);
@@ -453,7 +449,7 @@ class App extends React.Component {
       error: () => {
         console.log("client - error in retrieving saved data from the database");
       }
-    })
+    });
   }
 
   removeSingleDatabaseRecord(uniqueID) {
@@ -467,13 +463,12 @@ class App extends React.Component {
       }, error: function() {
         console.log('client received an error when attempting to remove from db');
       }
-    })
+    });
   }
 
   render() {
     return (
       <div>
-
         <h1 id='title'>Wanderly</h1>
 
         <MuiThemeProvider>
@@ -482,12 +477,10 @@ class App extends React.Component {
 
         <Weather information={this.state.weather} icon={this.state.weatherIcon} />
 
-
         <div style={makeBoxWiBoder('TabAndMapBox', '100%', 800, 'red')}>
 
           <div style={makeBoxWiBoder('TabMenu', '65%', '100%', 'red')}>
             <MuiThemeProvider>
-
               <TabMenu
                 handleFlightClick={this.handleFlightClick.bind(this)}
                 flights={this.state.flights}
@@ -498,7 +491,6 @@ class App extends React.Component {
                 handleFoodItemState={this.handleFoodItemState.bind(this)}
                 foodlist={this.state.foodList}
               />
-
             </MuiThemeProvider>
             {/* {console.log('supposed to be foodlist: ', this.state.foodList)} */}
             {/* {console.log('supposed to be hotels: ', this.state.hotels)} */}
@@ -561,7 +553,6 @@ class App extends React.Component {
             <div style={makeBoxWiBoder('TabMenuForTripSumAndSave', '100%', '48%', '')}>
               <MuiThemeProvider>
 
-
                 <TabsForTripSumAndSave
                   trips={this.state.savedTrips}
                   remove={this.removeSingleDatabaseRecord}
@@ -574,10 +565,9 @@ class App extends React.Component {
           </div>
 
         </div>
-      </div >
+      </div>
     )
   }
 }
-
 
 ReactDOM.render(<App />, document.getElementById('app'));
