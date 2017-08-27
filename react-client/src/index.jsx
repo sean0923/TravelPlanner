@@ -541,11 +541,7 @@ class App extends React.Component {
                 </tr>
               </tbody>
             </table> */}
-<<<<<<< HEAD
           </div>
-=======
-          </div> 
->>>>>>> Fig bug related to require config.js
 
           <div style={makeBoxWiNoBoder('TabAndMapBox', '2.5%', '100%')}></div>
 
