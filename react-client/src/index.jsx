@@ -143,6 +143,7 @@ class App extends React.Component {
     var context = this;
 
     qpx.getInfo(body, function(error, data) {
+      console.log('flight data is: ',data)
       context.setState({
         flights: data.trips.tripOption
       })

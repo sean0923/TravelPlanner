@@ -40,7 +40,7 @@ export default class TabMenu extends React.Component {
       >
         <Tab label="Flights" value="a">
           <div>
-            <h2 style={styles.headline}>Controllable Tab A</h2>
+            <h2 style={styles.headline}></h2>
             <Flights handleFlightClick={this.props.handleFlightClick} flights={this.props.flights}/>
           </div>
         </Tab>
@@ -51,7 +51,7 @@ export default class TabMenu extends React.Component {
         </Tab>
         <Tab label="Attractions" value="C">
           <div>
-            <h2 style={styles.headline}>Controllable Tab B</h2>
+            <h2 style={styles.headline}></h2>
             <Attractions handleAttrItemState={this.props.handleAttrItemState} attrItems={this.props.attrItems}/>
           </div>
         </Tab>

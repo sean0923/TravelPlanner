@@ -10,6 +10,7 @@ const styles = {
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
+    margin: '10px'
   },
   gridList: {
     width: '100%',
@@ -29,11 +30,13 @@ class AttractionGridItem extends React.Component {
 
   handleAttrClick(e){
 
-    if (this.state.starColor === 'white') {
-      this.setState({starColor:'red'})
-    } else {
-      this.setState({starColor:'white'})
-    }
+    this.setState({starColor: this.state.starColor === 'white'? 'yellow' : 'white'})
+
+    // if (this.state.starColor === 'white') {
+    //   this.setState({starColor:'yellow'})
+    // } else {
+    //   this.setState({starColor:'white'})
+    // }
 
     this.setState({
       selected: !this.state.selected,
@@ -50,8 +53,9 @@ class AttractionGridItem extends React.Component {
       <div style={styles.root} onClick = {this.handleAttrClick.bind(this)}>
         <GridList
           style={styles.gridList}
+          cols={2}
         >
-          
+
             <GridTile
               key={'tile.img'}
               title={this.props.attrItem.name}
@@ -61,11 +65,10 @@ class AttractionGridItem extends React.Component {
                   <Star color={this.state.starColor} />
                 </IconButton>
               }
-              padding={4}
             >
               <img src={this.props.attrItem.image_url} />
             </GridTile>
-          
+
         </GridList>
       </div>
     )
