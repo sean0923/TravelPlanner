@@ -18,6 +18,8 @@ var searchFood = function(searchCity, callback) {
   //   console.log('ERROR ', e);
   // });
 
+  console.log('This is yelp food token: ', process.env.YELP_TOKEN);
+
   var yelpToken = process.env.YELP_TOKEN || config.yelpToken;
   const client = yelp.client(yelpToken);
 
