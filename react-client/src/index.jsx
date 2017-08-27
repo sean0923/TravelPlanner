@@ -6,9 +6,10 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import Attraction from './components/Attraction.jsx';
 var config;
+console.log('exist??', process.env.NODE_ENV );
 if ( process.env.NODE_ENV !== 'production' ) { // if we are not at heroku
   console.log('why??');
-  var config = require('../../coconfig.js');
+  var config = require('../../config.js');
 }
 import Flights from './components/Flights.jsx';
 const FlightAPI = require('qpx-express');
