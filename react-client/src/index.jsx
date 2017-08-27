@@ -12,7 +12,7 @@ if ( process.env.NODE_ENV !== 'production' ) { // if we are not at heroku
 import Flights from './components/Flights.jsx';
 const FlightAPI = require('qpx-express');
 import FoodList from './components/FoodList.jsx';
-import Hotels from './components/Hotels.jsx'
+import Hotels from './components/hotels.jsx'
 import Map from './components/Map.jsx';
 import Weather from './components/Weather.jsx';
 import SavedTrips from './components/savedTrips.jsx';
