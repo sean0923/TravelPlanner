@@ -1,7 +1,9 @@
 var request = require('request');
 var config;
-if ( process.env.NODE_ENV !== 'production' ) { // if we are not at heroku
-  var config = require('../../config.js');
+try {
+  config = require('../../config.js');
+} catch (e) {
+  config = undefined;
 }
 
 var requestGeolocation = function(location, callback) {
