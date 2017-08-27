@@ -67,20 +67,11 @@ class SearchBar extends React.Component {
           <div className="search-wrapper">
             <CitySearch handleChange={this.handleDepartureText} description="Departure City" />
             <CitySearch handleChange={this.handleArrivalText} description="Arrival City" />
-<<<<<<< HEAD
             <Calendar handleChange={this.handleDepartureDate} description="Departure " />
             <Calendar handleChange={this.handleReturnDate} description="Return " />
             <RaisedButton
               label="Search"
               primary={true}
-=======
-            <Calendar handleChange={this.handleDepartureDate} description="Departure" />
-            <Calendar handleChange={this.handleReturnDate} description="Return" />
-
-            <RaisedButton 
-              label="Search" 
-              primary={true} 
->>>>>>> All tabs render correctly
               onClick={this.handleSearchClick}
             />
           </div>
