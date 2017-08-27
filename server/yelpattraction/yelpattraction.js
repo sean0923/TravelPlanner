@@ -10,8 +10,8 @@ try {
 var searchAttr = function(searchCity, callback) {
 
   var attrResult = {};
-  const clientId = config.clientId;
-  const clientSecret = config.clientSecret;
+  const clientId = process.env.clientId || config.clientId;
+  const clientSecret = process.env.clientSecret || config.clientSecret;
 
   const token = yelp.accessToken(clientId, clientSecret).then(response => {
 
