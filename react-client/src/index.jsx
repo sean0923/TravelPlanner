@@ -7,7 +7,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Attraction from './components/Attraction.jsx';
 var config;
 if ( process.env.NODE_ENV !== 'production' ) { // if we are not at heroku
-  var config = require('../../config.js');
+  console.log('why??');
+  var config = require('../../coconfig.js');
 }
 import Flights from './components/Flights.jsx';
 const FlightAPI = require('qpx-express');

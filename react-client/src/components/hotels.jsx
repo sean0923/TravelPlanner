@@ -1,5 +1,5 @@
 import React from 'react';
-import HotelEntry from './hotelEntry.jsx';
+// import HotelEntry from './hotelEntry.jsx';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Grid_HotelList from './Grid_HotelList.jsx';
