@@ -5,21 +5,13 @@ try {
   config = require('../../config.js');
 } catch (e) {
   config = undefined;
-<<<<<<< HEAD
-=======
-var config;
-if ( process.env.NODE_ENV !== 'production' ) { // if we are not at heroku
-  var config = require('../../config.js');
->>>>>>> Fig bug related to require config.js
-=======
->>>>>>> Fix heroku bug
 }
 
 var searchAttr = function(searchCity, callback) {
 
   var attrResult = {};
-  const clientId = process.env.clientId || config.clientId;
-  const clientSecret = process.env.clientSecret || config.clientSecret;
+  const clientId = config.clientId;
+  const clientSecret = config.clientSecret;
 
   const token = yelp.accessToken(clientId, clientSecret).then(response => {
 

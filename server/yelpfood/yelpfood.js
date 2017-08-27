@@ -4,28 +4,19 @@ try {
   config = require('../../config.js');
 } catch (e) {
   config = undefined;
-<<<<<<< HEAD
-=======
-if ( process.env.NODE_ENV !== 'production' ) { // if we are not at heroku
-  var config = require('../../config.js');
->>>>>>> Fig bug related to require config.js
-=======
->>>>>>> Fix heroku bug
 }
 
 var searchFood = function(searchCity, callback) {
 
   var foodResult = [];
-  const clientId = process.env.clientId ||config.clientId;
-  const clientSecret = process.env.clientSecret ||config.clientSecret;
+  const clientId = config.clientId;
+  const clientSecret = config.clientSecret;
 
   // const token = yelp.accessToken(clientId, clientSecret).then(response => {
   //   // console.log('TOKEN ', response.jsonBody.access_token);
   // }).catch(e => {
   //   console.log('ERROR ', e);
   // });
-
-  console.log('This is yelp food token: ', process.env.YELP_TOKEN);
 
   var yelpToken = process.env.YELP_TOKEN || config.yelpToken;
   const client = yelp.client(yelpToken);
