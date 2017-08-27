@@ -604,7 +604,9 @@ const routes = (
   </Router>
 );
 
-ReactDOM.render(
-  routes
-  , document.getElementById('app'));
+// ReactDOM.render(
+//   routes
+//   , document.getElementById('app'));
+
+ReactDOM.render(<App />, document.getElementById('app'));
 
