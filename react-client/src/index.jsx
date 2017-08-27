@@ -399,7 +399,7 @@ class App extends React.Component {
   }
 
   handleAttrItemState(e) {
-    this.updateSavedChoices('attractions', e.props.attrItemEntry, e.state.selected);
+    this.updateSavedChoices('attractions', e.props.attrItem, e.state.selected);
   }
 
   handleFoodItemState(e, fooditem, selected) {
@@ -407,8 +407,8 @@ class App extends React.Component {
   }
 
   updateSavedChoices(categoryName, itemData, selected) {
-    console.log('slected: ', selected);
-    console.log('itemData:', itemData)
+    // console.log('slected: ', selected);
+    // console.log('itemData:', itemData)
     let list = this.state.savedChoices[0][categoryName];
     if (list === undefined) {
       return;
@@ -540,7 +540,7 @@ class App extends React.Component {
                 </tr>
               </tbody>
             </table> */}
-          </div> 
+          </div>
 
           <div style={makeBoxWiNoBoder('TabAndMapBox', '2.5%', '100%')}></div>
 
@@ -609,4 +609,3 @@ const routes = (
 //   , document.getElementById('app'));
 
 ReactDOM.render(<App />, document.getElementById('app'));
-
