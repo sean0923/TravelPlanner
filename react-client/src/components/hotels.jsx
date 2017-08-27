@@ -22,7 +22,11 @@ class Hotels extends React.Component {
               handleHotelClick={this.props.handleHotelClick.bind(this)}
             />
           </MuiThemeProvider>
+<<<<<<< HEAD
           {/* {this.props.hotels.map((hotel, index) => <HotelEntry hotel={hotel} index={index} key={index} handleHotelClick={this.props.handleHotelClick.bind(this)} />)} */}
+=======
+          {/*this.props.hotels.map((hotel, index) => <HotelEntry hotel={hotel} index={index} key={index} handleHotelClick={this.props.handleHotelClick.bind(this)} />)*/}
+>>>>>>> All tabs render correctly
         </div>
       )
     } else {
