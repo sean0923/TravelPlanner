@@ -30,13 +30,11 @@ class AttractionGridItem extends React.Component {
 
   handleAttrClick(e){
 
-    this.setState({starColor: this.state.starColor === 'white'? 'yellow' : 'white'})
-
-    // if (this.state.starColor === 'white') {
-    //   this.setState({starColor:'yellow'})
-    // } else {
-    //   this.setState({starColor:'white'})
-    // }
+    if (this.state.starColor === 'white') {
+      this.setState({starColor:'red'})
+    } else {
+      this.setState({starColor:'white'})
+    }
 
     this.setState({
       selected: !this.state.selected,
