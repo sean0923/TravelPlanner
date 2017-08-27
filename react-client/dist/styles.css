@@ -6,7 +6,7 @@ body {
   color: #333;
   background: url("backpack.jpg") no-repeat center center fixed;
   padding: 2em;
-  font-family: 'Papyrus';
+  font-family: 'helvetica';
   font-weight: normal;
 }
 
@@ -54,7 +54,7 @@ th {
 }
 
 .date-wrapper {
-  font-family: 'Papyrus';
+  font-family: 'helvetica';
   text-align: center;
   position: relative;
   margin: 0 20px;
@@ -66,7 +66,7 @@ th {
     padding-top: 10px;
   }
   .input {
-    font-family: 'Papyrus';
+    font-family: 'helvetica';
     text-align: center;
     font-size: 15px;
     color: #333;
@@ -161,7 +161,7 @@ th {
 }
 
 .input-text {
-  font-family: 'Papyrus';
+  font-family: 'helvetica';
   background-color: #ffffff;
   padding: 2px 10px;
   text-align: center;
@@ -212,7 +212,7 @@ th {
 }
 
 .search {
-  font-family: 'Papyrus';
+  font-family: 'helvetica';
   display: inline-block;
   margin: 0 auto;
   margin-bottom: 20px;
@@ -223,7 +223,7 @@ th {
 }
 
 .search-wrapper {
-  font-family: 'Papyrus';
+  font-family: 'helvetica';
   background: rgba(0, 188, 212, .2);
   border-radius: 15px;
   margin: 0 auto;
@@ -246,7 +246,7 @@ th {
 #title {
   color:rgba(45,45,45,0.9);
   display: inline-block;
-  font-family: 'Papyrus';
+  font-family: 'helvetica';
   font-size: 200%;
   margin: 10px;
   text-align: left;
@@ -255,7 +255,7 @@ th {
 #quote {
   color:rgba(45,45,45,0.9);
   display: inline-block;
-  font-family: 'Papyrus';
+  font-family: 'helvetica';
   font-size: 150%;
   margin-left: 400px;
   position: relative;
@@ -315,6 +315,9 @@ th {
   color: #0E6666;
 }
 
+.hottelList {
+  margin: 10px;
+}
 
 .tileDesign_00 {
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);

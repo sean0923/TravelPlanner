@@ -11,7 +11,7 @@ function Attraction ({attrItems, handleAttrItemState}) {
 
   if (attrItems.length > 0) {
     return(
-         <div>
+         <div class="hotelList">
 
            {/*
               <MuiThemeProvider>
@@ -23,19 +23,19 @@ function Attraction ({attrItems, handleAttrItemState}) {
             */}
 
 
-           {attrItems.map((item,index) => 
+           {attrItems.map((item,index) =>
                 {
                   return(
-                    <MuiThemeProvider key={index}>
+                    <MuiThemeProvider key={index} class="hotelList">
                       <AttractionGridItem
                         attrItem={item}
                         handleAttrItemState={handleAttrItemState.bind(this)}
                       />
-                    </MuiThemeProvider> 
+                    </MuiThemeProvider>
                   )
                 }
             )}
-            
+
 
          </div>
        )
