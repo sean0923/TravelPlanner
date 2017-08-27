@@ -9,8 +9,8 @@ try {
 var searchFood = function(searchCity, callback) {
 
   var foodResult = [];
-  const clientId = config.clientId;
-  const clientSecret = config.clientSecret;
+  const clientId = process.env.clientId ||config.clientId;
+  const clientSecret = process.env.clientSecret ||config.clientSecret;
 
   // const token = yelp.accessToken(clientId, clientSecret).then(response => {
   //   // console.log('TOKEN ', response.jsonBody.access_token);
