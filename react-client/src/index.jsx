@@ -230,6 +230,9 @@ class App extends React.Component {
   }
 
   handleFlightClick(flight, event) {
+
+    // console.log('flight:', flight);
+
     this.removeClass('flightHighlight');
     if (this.state.selectedFlightId === flight.id) {
       this.state.savedChoices[0].flights = {};
@@ -558,12 +561,17 @@ class App extends React.Component {
             </div>
             <div style={makeBoxWiNoBoder('marginBtwMapAnd', '100%', '2%')} />
 
+
             <div style={makeBoxWiNoBoder('TabMenuForTripSumAndSave', '100%', '48%')}>
               <MuiThemeProvider>
                 <TabsForTripSumAndSave
                   trips={this.state.savedTrips}
                   remove={this.removeSingleDatabaseRecord}
                   save={this.saveToDatabase}
+                  departureDate={this.state.departureDate}
+                  returnDate={this.state.returnDate}
+                  departureLocation={this.state.departureLocation}
+                  arrivalLocation={this.state.arrivalLocation}
                 />
               </MuiThemeProvider>
             </div>
