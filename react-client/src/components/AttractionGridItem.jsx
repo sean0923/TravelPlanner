@@ -51,7 +51,7 @@ class AttractionGridItem extends React.Component {
       <div style={styles.root} onClick = {this.handleAttrClick.bind(this)}>
         <GridList
           style={styles.gridList}
-          cols={2}
+          cols={1}
         >
 
             <GridTile
