@@ -3,6 +3,7 @@ import {Tabs, Tab} from 'material-ui/Tabs';
 
 
 import SavedTrips from './savedTrips.jsx';
+import TripSummary from './TripSummary.jsx';
 
 const styles = {
   headline: {
@@ -39,7 +40,11 @@ export default class TabsForTripSumAndSave extends React.Component {
 
         <Tab label="Trip Summary" value="a">
           <div>
-             <SavedTrips
+             <TripSummary
+              departureDate={this.props.departureDate} 
+              returnDate={this.props.returnDate} 
+              departureLocation={this.props.departureLocation} 
+              arrivalLocation={this.props.arrivalLocation} 
               trips={this.props.trips} 
               remove={this.props.remove} 
               save={this.props.save} 
@@ -48,10 +53,11 @@ export default class TabsForTripSumAndSave extends React.Component {
         </Tab>
         <Tab label="My Trips" value="b">
           <div>
-            <h2 style={styles.headline}>Controllable Tab B</h2>
-            {[...Array(100).keys()].map(() => {
-              return ('My Trips');
-            })}
+             <SavedTrips
+              trips={this.props.trips} 
+              remove={this.props.remove} 
+              save={this.props.save} 
+            /> 
           </div>
         </Tab>
         
