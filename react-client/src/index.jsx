@@ -486,7 +486,7 @@ class App extends React.Component {
     return (
       <div>
         <h1 id='title'>Wanderly</h1>
-        <h2 id='quote'>"Travel Where Your Heart Desires"</h2>
+        <h2 id='quote'>"Travel Where Your Heart Desires ~"</h2>
 
         <MuiThemeProvider>
           <span><SearchBar onSearch={this.onSearch} /></span>
